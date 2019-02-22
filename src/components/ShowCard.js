@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
+
 import * as actions from '../redux/actions';
 
 const ShowCard = (props) => {
@@ -8,7 +10,10 @@ const ShowCard = (props) => {
     return (
         <div className='movie-card'>
         <Card 
-            onClick={() => props.getShowDetails(show.id)}
+            onClick={() => {
+                props.getShowDetails(show.id)
+                props.history.push(`/shows/${show.id}`)
+            }}
         >
             <Card.Content>
                 <Card.Header>{show.name}</Card.Header>
@@ -19,4 +24,4 @@ const ShowCard = (props) => {
     )
 }
 
-export default connect(null, actions)(ShowCard);
+export default withRouter(connect(null, actions)(ShowCard));

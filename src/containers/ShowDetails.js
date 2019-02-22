@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const ShowDetails = (props) => {
+
     return(
         <div>
             {!props.show ? null : props.show.name}

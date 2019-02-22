@@ -6,6 +6,7 @@ import * as actions from '../redux/actions'
 
 import SearchBar from '../components/SearchBar';
 import ShowList from './ShowsList';
+import ShowDetails from './ShowDetails';
 
 class App extends PureComponent {
   render() {
@@ -14,6 +15,7 @@ class App extends PureComponent {
         <SearchBar />
         <Switch>
           <Route path='/search' component={ShowList} />
+          <Route path='/shows/:id' component={ShowDetails} />
         </Switch>
       </div>
     );

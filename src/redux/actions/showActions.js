@@ -18,7 +18,6 @@ const getShows = () => (dispatch, getState) => {
 }
 
 const getShowDetails = (showId) => (dispatch, getState) => {
-	debugger
 	fetch(`${BASE_URL}/shows/${showId}`)
 		.then(res => res.json())
 		.then(show => 

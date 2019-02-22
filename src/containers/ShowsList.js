@@ -1,20 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import ShowCard from '../components/ShowCard'
+import { Route } from 'react-router-dom';
+import ShowCard from '../components/ShowCard';
 // import ShowDetails from './ShowDetails';
 
 const ShowList = (props) => {
     const {shows} = props.shows
-    return(
-        <div>
-            {!shows ? null : shows.map(show => 
-                <ShowCard 
+    if (shows) {
+        return(
+            <div>
+               <Route path='/search' render={() => (
+                  shows.map(show =>  
+                    <ShowCard 
                     key={show.id}
                     show={show}
-                />)}
-        </div>
-    )
+                     />)
+               )} />
+            </div>
+        )
+    }else{
+        return null
+    }
+    
 }
 
 const mapStateToProps = state => {
