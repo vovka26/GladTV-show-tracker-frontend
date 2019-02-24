@@ -2,18 +2,35 @@ import React, { PureComponent } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import * as actions from '../redux/actions'
+import * as actions from '../redux/actions';
 
 import SearchBar from '../components/SearchBar';
 import ShowList from './ShowsList';
-import ShowDetails from './ShowDetails';
+import ShowDetails from '../components/ShowDetails';
+import Login from '../components/Login';
+import SignUp from '../components/SignUp';
+import WatchList from '../components/WatchList';
+import Navbar from './Navbar';
+
 
 class App extends PureComponent {
+  componentDidMount(){
+    let token = localStorage.getItem('token')
+    if (token) {
+      this.props.getUserWithToken(token)
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <SearchBar />
+        <Navbar />
+        <SearchBar /> 
         <Switch>
+          {/* <Route path='/' component={MainPage} /> */}
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={SignUp} />
+          <Route path='/watchlist' component={WatchList} />
           <Route path='/search' component={ShowList} />
           <Route path='/shows/:id' component={ShowDetails} />
         </Switch>
@@ -22,6 +39,10 @@ class App extends PureComponent {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
 
-
-export default withRouter(connect(null, actions)(App));
+export default withRouter(connect(mapStateToProps, actions)(App));

@@ -12,6 +12,7 @@ const ShowCard = (props) => {
         <Card 
             onClick={() => {
                 props.getShowDetails(show.id)
+                props.clearSearchTerm()
                 props.history.push(`/shows/${show.id}`)
             }}
         >

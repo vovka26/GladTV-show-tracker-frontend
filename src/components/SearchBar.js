@@ -6,9 +6,11 @@ import { withRouter } from 'react-router-dom';
 
 
 class SearchBar extends PureComponent {
-
     handleOnEnter = (e) => {
         if (e.key === 'Enter') {
+            if (this.props.seasonDetails) {
+                this.props.clearSeasonDetails()
+            }
             this.props.getShows()
             this.props.history.push(`/search?query=${this.props.searchTerm}`)
         }
@@ -33,7 +35,8 @@ class SearchBar extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        searchTerm: state.searchTerm
+        searchTerm: state.searchTerm,
+        seasonDetails: state.seasonDetails
     }
 }
 

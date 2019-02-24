@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import ShowCard from '../components/ShowCard';
-// import ShowDetails from './ShowDetails';
 
 const ShowList = (props) => {
     const {shows} = props.shows
@@ -16,7 +15,7 @@ const ShowList = (props) => {
                     key={show.id}
                     show={show}
                      />)
-               )} />
+                )}/>
             </div>
         )
     }else{

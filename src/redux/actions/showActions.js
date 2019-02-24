@@ -17,7 +17,7 @@ const getShows = () => (dispatch, getState) => {
 	}
 }
 
-const getShowDetails = (showId) => (dispatch, getState) => {
+const getShowDetails = showId => dispatch => {
 	fetch(`${BASE_URL}/shows/${showId}`)
 		.then(res => res.json())
 		.then(show => 
@@ -27,5 +27,9 @@ const getShowDetails = (showId) => (dispatch, getState) => {
 			})
 		)
 }
+
+// const saveShowToWatchlist = () => dispatch => {
+// 	fetch(`${BASE_URL}/watchlist `)
+// }
 
 export { getShows, getShowDetails }
