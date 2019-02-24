@@ -25,10 +25,9 @@ class SignUp extends PureComponent {
 
     render(){
         const { firstName, lastName, username, password } = this.state
-        const { currentUser } = this.props
-        debugger
+        // const { currentUser } = this.props
         return(
-            currentUser ? <Redirect to='/watchlist' /> :
+            localStorage.token ? <Redirect to='/watchlist' /> :
             <Form onSubmit={this.onSubmit}>
                 <Form.Input 
                     label='First Name'
@@ -65,10 +64,10 @@ class SignUp extends PureComponent {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        currentUser: state.currentUser
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         currentUser: state.currentUser
+//     }
+// }
 
-export default connect(mapStateToProps, actions)(SignUp);
+export default connect(null, actions)(SignUp);

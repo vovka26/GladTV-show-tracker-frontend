@@ -23,7 +23,7 @@ class Login extends PureComponent {
     render() {
         const { username, password} = this.state
         return (
-            localStorage.getItem('token') ? <Redirect to='/watchlist' /> :
+            this.props.currentUser ? <Redirect to='/watchlist' /> :
             <Form
                 onSubmit={this.onSubmit}
             >

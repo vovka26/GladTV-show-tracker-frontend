@@ -24,22 +24,25 @@ const userLogout = () => dispatch => {
     })
 }
 
-//helper method to check if the login and password are valid
 const setUser = (response, dispatch) => {
-    if (response['success']) {
-        
+    if (response['success'] && response['token']) {
        localStorage.setItem('token', response['token'])
         dispatch({
             type: SET_CURRENT_USER, 
             payload: response['userData']
         })
+    }else if(response['success']){
+        dispatch({
+            type: SET_CURRENT_USER,
+            payload: response['userData']
+        })
     }else{
-        console.log(response)
+        alert('something went wrong')
     }
 }
 
-const getUserWithToken = token => dispatch => {
-    fetch(`${BASE_URL}/profile`,{
+const checkToken = token => dispatch => {
+    fetch(`${BASE_URL}/profile`, {
         method: 'GET',
         headers: {
             'Authentication': `Bearer ${token}`
@@ -77,4 +80,4 @@ const createUser = formData => dispatch => {
     })
 }
 
-export { userLogin, setUser, getUserWithToken, userLogout, createUser }
+export { userLogin, setUser, checkToken, userLogout, createUser }

@@ -14,10 +14,10 @@ import Navbar from './Navbar';
 
 
 class App extends PureComponent {
-  componentDidMount(){
+  componentWillMount(){
     let token = localStorage.getItem('token')
     if (token) {
-      this.props.getUserWithToken(token)
+      this.props.checkToken(token)
     }
   }
 
