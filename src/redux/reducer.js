@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
-import { FETCH_SHOWS, FETCH_SHOW_DETAILS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, FETCH_SEASON_EPISODES, CLEAR_FETCHED_EPISODE, SET_CURRENT_USER, USER_LOGOUT } from './actions/types'
+import { FETCH_SHOWS, FETCH_SHOW_DETAILS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, FETCH_SEASON_EPISODES, CLEAR_FETCHED_EPISODE, SET_CURRENT_USER, USER_LOGOUT, ADDING_SHOW_TO_WATCHLIST } from './actions/types'
 
-const shows = (state=[], action) => {
+const shows = (state='', action) => {
     switch(action.type){
         case FETCH_SHOWS: 
-            return {
-                ...state, 
-                shows: action.payload.results
-            }
+            return action.payload.results
         default:
             return state;
     }
@@ -24,7 +21,7 @@ const searchTerm = (state='', action) => {
     }
 }
 
-const showDetails = (state=null, action) => {
+const showDetails = (state='', action) => {
     switch (action.type){
         case FETCH_SHOW_DETAILS:
             return action.payload;
@@ -55,12 +52,23 @@ const currentUser = (state=null, action) => {
     }
 }
 
+const watchList = (state=[], action) => {
+    switch (action.type) {
+        case ADDING_SHOW_TO_WATCHLIST:
+            debugger
+            return [...state, action.payload.showData]
+        default:
+            return state
+    }
+}
+
 
 export default combineReducers({
     shows,
     showDetails,
     searchTerm,
     seasonDetails, 
-    currentUser
+    currentUser,
+    watchList
 })
 

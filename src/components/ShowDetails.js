@@ -13,6 +13,10 @@ class ShowDetails extends PureComponent {
         this.props.getSeasonDetails(this.props.show.id, target.id)
     }
 
+    onWatchShowClick = () => {
+        this.props.addShowToUserWatchlist(this.props.show)
+    }
+
     render(){
         const { show } = this.props
         if (show){
@@ -20,7 +24,7 @@ class ShowDetails extends PureComponent {
                 <div>
                     <h3>{show.name}</h3>
                     <Button
-                        // onClick={}    
+                        onClick={this.onWatchShowClick}    
                     >Watch Show
                     </Button>
                     <div>

@@ -1,5 +1,5 @@
 import { BASE_URL } from './index'
-import { SET_CURRENT_USER, USER_LOGOUT } from './types';
+import { SET_CURRENT_USER, USER_LOGOUT, ADDING_SHOW_TO_WATCHLIST } from './types';
 
 const userLogin = (username, password) => dispatch => {
     fetch(`${BASE_URL}/login`, {
@@ -80,4 +80,30 @@ const createUser = formData => dispatch => {
     })
 }
 
-export { userLogin, setUser, checkToken, userLogout, createUser }
+const addShowToUserWatchlist = show => dispatch => {
+	const token = localStorage.token
+    const { name, vote_average, genres, id, poster_path  } = show
+    debugger
+	fetch(`http://localhost:3000/api/v1/shows`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Authentication': `Bearer ${token}`
+		},
+		body: JSON.stringify({
+            title: name,
+            rating: vote_average, 
+            genre: genres[0],
+            api_id: id,
+            image_url: poster_path
+		})
+	})
+		.then(res => res.json())
+		.then(response => dispatch({
+			type: ADDING_SHOW_TO_WATCHLIST,
+			payload: response
+		}))
+}
+
+export { userLogin, setUser, checkToken, userLogout, createUser, addShowToUserWatchlist }

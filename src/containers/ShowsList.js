@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 import ShowCard from '../components/ShowCard';
 
 const ShowList = (props) => {
-    const {shows} = props.shows
+    const {shows} = props
     if (shows) {
         return(
             <div>
