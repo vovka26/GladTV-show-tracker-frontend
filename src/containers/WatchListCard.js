@@ -1,10 +1,17 @@
 import React from 'react';
 import { Card, Image, Button } from 'semantic-ui-react';
+import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions'
 
 const WatchListCard = props => {
-    const { show, deleteShowFromWatchlist } = props
+    const { show, deleteShowFromWatchlist, getShowDetails, clearSearchTerm, history } = props
+    const onCardClick = () => {
+        
+        getShowDetails(show.api_id)
+        clearSearchTerm()
+        history.push(`/shows/${show.api_id}`)
+    }
 
     const deleteButton = () => {
         deleteShowFromWatchlist(show.id)
@@ -13,7 +20,7 @@ const WatchListCard = props => {
     return(
         show ? 
         <Card 
-            // onClick={() => onShowCardClick(props)}
+            onClick={onCardClick}
         >
             <Card.Content>
                 <Card.Header>
@@ -33,4 +40,4 @@ const WatchListCard = props => {
     )
 }
 
-export default connect(null, actions)(WatchListCard);
+export default withRouter(connect(null, actions)(WatchListCard));

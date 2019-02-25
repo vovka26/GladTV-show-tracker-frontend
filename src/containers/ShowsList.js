@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import ShowCard from '../components/ShowCard';
+import ShowCard from './ShowCard';
 
 const ShowList = (props) => {
     const {shows} = props
