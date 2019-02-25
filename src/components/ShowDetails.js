@@ -25,7 +25,7 @@ class ShowDetails extends PureComponent {
                     <h3>{show.name}</h3>
                     <Button
                         onClick={this.onWatchShowClick}    
-                    >Watch Show
+                    >Subscribe!
                     </Button>
                     <div>
                         <Image 

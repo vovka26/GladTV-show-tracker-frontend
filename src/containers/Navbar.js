@@ -19,6 +19,9 @@ const Navbar = (props) => {
                     />
                     <Menu.Menu position='right'> 
                         <Menu.Item 
+                            name={`Hey ${currentUser.username}`}
+                        />
+                        <Menu.Item 
                             name='Logout'
                             onClick={userLogout}
                         />

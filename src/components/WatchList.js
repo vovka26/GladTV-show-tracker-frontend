@@ -1,14 +1,24 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import WatchListCard from '../containers/WatchListCard';
+import * as actions from '../redux/actions'
 
-class WatchList extends PureComponent {
+class WatchList extends Component {
+    componentWillMount(){
+        this.props.getWatchList()
+    }
     render(){
-        const { currentUser } = this.props
+        const { watchList } = this.props
         return(
             !localStorage.getItem('token') ? <Redirect to='/login' /> :
             <div>
-                {currentUser ? `Hello ${currentUser.username}` : null}
+                {watchList.map(show => (
+                    <WatchListCard 
+                        show={show}
+                        key={show.api_id}
+                    />
+                ))}
             </div>
         )
     }
@@ -16,8 +26,9 @@ class WatchList extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
+        watchList: state.watchList
     }
 }
 
-export default connect(mapStateToProps)(WatchList);
+export default connect(mapStateToProps, actions)(WatchList);

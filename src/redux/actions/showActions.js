@@ -1,4 +1,4 @@
-import { FETCH_SHOWS, FETCH_SHOW_DETAILS } from './types'
+import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST } from './types'
 
 import { BASE_URL } from './index'
 
@@ -28,8 +28,19 @@ const getShowDetails = showId => dispatch => {
 		)
 }
 
-// const saveShowToWatchlist = () => dispatch => {
-// 	fetch(`${BASE_URL}/watchlist `)
-// }
+const getWatchList = () => dispatch => {
+	const token = localStorage.token
+	fetch(`${BASE_URL}/shows`, {
+		method: 'GET',
+        headers: {
+			'Authentication': `Bearer ${token}`
+		}
+	})
+	.then(res => res.json())
+	.then(response => dispatch({
+		type: GET_WATCHLIST,
+		payload: response
+	}))
+}
 
-export { getShows, getShowDetails }
+export { getShows, getShowDetails, getWatchList }

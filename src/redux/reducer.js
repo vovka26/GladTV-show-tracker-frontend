@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { FETCH_SHOWS, FETCH_SHOW_DETAILS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, FETCH_SEASON_EPISODES, CLEAR_FETCHED_EPISODE, SET_CURRENT_USER, USER_LOGOUT, ADDING_SHOW_TO_WATCHLIST } from './actions/types'
+import { FETCH_SHOWS, FETCH_SHOW_DETAILS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, FETCH_SEASON_EPISODES, CLEAR_FETCHED_EPISODE, SET_CURRENT_USER, USER_LOGOUT, ADDING_SHOW_TO_WATCHLIST, DELETING_SHOW_FROM_WATCHLIST, GET_WATCHLIST } from './actions/types'
 
 const shows = (state='', action) => {
     switch(action.type){
@@ -54,9 +54,16 @@ const currentUser = (state=null, action) => {
 
 const watchList = (state=[], action) => {
     switch (action.type) {
+        case GET_WATCHLIST:
+            return action.payload
         case ADDING_SHOW_TO_WATCHLIST:
-            debugger
             return [...state, action.payload.showData]
+        case DELETING_SHOW_FROM_WATCHLIST: 
+            
+            const copy = state.slice()
+            const index = state.findIndex(show => show.id === action.payload.id)
+            copy.splice(index, 1)
+            return [...copy]
         default:
             return state
     }

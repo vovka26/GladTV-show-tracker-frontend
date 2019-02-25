@@ -1,6 +1,7 @@
 //show actions
 export const FETCH_SHOWS = 'FETCH_SHOWS';
 export const FETCH_SHOW_DETAILS = 'FETCH_SHOW_DETAILS';
+export const GET_WATCHLIST = 'GET_WATCHLIST';
 
 
 //search actions
@@ -16,3 +17,4 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const CREATE_USER = 'CREATE_USER';
 export const ADDING_SHOW_TO_WATCHLIST = 'ADDING_SHOW_TO_WATCHLIST';
+export const DELETING_SHOW_FROM_WATCHLIST = 'DELETING_SHOW_FROM_WATCHLIST';

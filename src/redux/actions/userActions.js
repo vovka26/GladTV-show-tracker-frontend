@@ -1,5 +1,5 @@
 import { BASE_URL } from './index'
-import { SET_CURRENT_USER, USER_LOGOUT, ADDING_SHOW_TO_WATCHLIST } from './types';
+import { SET_CURRENT_USER, USER_LOGOUT, ADDING_SHOW_TO_WATCHLIST, DELETING_SHOW_FROM_WATCHLIST } from './types';
 
 const userLogin = (username, password) => dispatch => {
     fetch(`${BASE_URL}/login`, {
@@ -54,7 +54,7 @@ const checkToken = token => dispatch => {
 
 const createUser = formData => dispatch => {
     const {username, password, firstName, lastName} = formData
-    debugger
+    
     fetch(`${BASE_URL}/newUser`,{
         method: 'POST',
         headers: {
@@ -82,8 +82,7 @@ const createUser = formData => dispatch => {
 
 const addShowToUserWatchlist = show => dispatch => {
 	const token = localStorage.token
-    const { name, vote_average, genres, id, poster_path  } = show
-    debugger
+    const { name, vote_average, genres='N/A', id, poster_path  } = show
 	fetch(`http://localhost:3000/api/v1/shows`, {
 		method: 'POST',
 		headers: {
@@ -94,16 +93,47 @@ const addShowToUserWatchlist = show => dispatch => {
 		body: JSON.stringify({
             title: name,
             rating: vote_average, 
-            genre: genres[0],
+            genre: genres[0].name,
             api_id: id,
             image_url: poster_path
 		})
 	})
 		.then(res => res.json())
-		.then(response => dispatch({
-			type: ADDING_SHOW_TO_WATCHLIST,
-			payload: response
-		}))
+		.then(response => addingShowToWatchlist(response, dispatch))
 }
 
-export { userLogin, setUser, checkToken, userLogout, createUser, addShowToUserWatchlist }
+const addingShowToWatchlist = (response, dispatch) => {
+    if (response.error) {
+        alert('You are already following this show')
+    }else{
+        dispatch({
+                type: ADDING_SHOW_TO_WATCHLIST,
+                payload: response
+            })
+        }
+    }
+
+const deleteShowFromWatchlist = (showId) => dispatch => {
+    const token = localStorage.token
+    fetch(`http://localhost:3000/api/v1/shows/${showId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authentication': `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .then(response => deletingShowFromWatchlist(response, dispatch))
+}
+
+const deletingShowFromWatchlist = (response, dispatch) => {
+    if (response.error) {
+        alert('something went wrong')
+    }else{
+        dispatch({
+            type: DELETING_SHOW_FROM_WATCHLIST,
+            payload: response.showData[0]
+        })
+    }
+}
+
+export { userLogin, setUser, checkToken, userLogout, createUser, addShowToUserWatchlist,deleteShowFromWatchlist }

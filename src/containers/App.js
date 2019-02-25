@@ -12,13 +12,13 @@ import SignUp from '../components/SignUp';
 import WatchList from '../components/WatchList';
 import Navbar from './Navbar';
 
-
 class App extends PureComponent {
   componentWillMount(){
     let token = localStorage.getItem('token')
     if (token) {
       this.props.checkToken(token)
     }
+   
   }
 
   render() {
@@ -41,8 +41,7 @@ class App extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
-  }
+    currentUser: state.currentUser  }
 }
 
 export default withRouter(connect(mapStateToProps, actions)(App));
