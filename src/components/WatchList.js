@@ -6,10 +6,6 @@ import * as actions from '../redux/actions'
 // import ShowCard from './ShowCard';
 
 class WatchList extends Component {
-    componentWillMount(){
-        this.props.getWatchList()
-    }
-
     render(){
         const { watchList } = this.props
         return(

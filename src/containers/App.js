@@ -17,6 +17,7 @@ class App extends PureComponent {
     let token = localStorage.getItem('token')
     if (token) {
       this.props.checkToken(token)
+      this.props.getWatchList()
     }
    
   }

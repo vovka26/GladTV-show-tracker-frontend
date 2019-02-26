@@ -7,34 +7,34 @@ import * as actions from '../redux/actions'
 const WatchListCard = props => {
     const { show, deleteShowFromWatchlist, getShowDetails, clearSearchTerm, history } = props
     const onCardClick = () => {
-        
         getShowDetails(show.api_id)
         clearSearchTerm()
         history.push(`/shows/${show.api_id}`)
     }
 
-    const deleteButton = () => {
+    const deleteButton = (e) => {
+        e.stopPropagation()
         deleteShowFromWatchlist(show.id)
     }
 
     return(
         show ? 
-        <Card 
-            onClick={onCardClick}
-        >
-            <Card.Content>
-                <Card.Header>
-                    {show.title}
-                    <Button 
-                        circular
-                        onClick={deleteButton}
-                    >
-                         x 
-                    </Button>
-                </Card.Header>
-            </Card.Content>
-            <Image src={`https://image.tmdb.org/t/p/w200/${show.image_url}`} />
-        </Card> 
+        <div className='movie-card'>
+            <Card onClick={onCardClick}>
+                <Card.Content>
+                    <Card.Header>
+                        {show.title}
+                        <Button 
+                            circular
+                            onClick={deleteButton}
+                        >
+                            x 
+                        </Button>
+                    </Card.Header>
+                </Card.Content>
+                <Image src={`https://image.tmdb.org/t/p/w200/${show.image_url}`} />
+            </Card> 
+        </div>
         :
         null
     )

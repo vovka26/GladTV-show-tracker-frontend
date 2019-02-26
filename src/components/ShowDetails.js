@@ -1,40 +1,68 @@
 import React, { PureComponent } from 'react'; 
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import { Image, Button } from 'semantic-ui-react';
 import * as actions from '../redux/actions'
 import EpisodesTable from '../containers/EpisodesTable';
 
 class ShowDetails extends PureComponent {
+    componentWillMount(){
+        const showId = this.props.match.params.id
+        this.props.getShowDetails(showId)
+    }
+
     state = {
         seasonId: null
     }
     
     onSeasonClick = ({target}) => {
-        this.props.getSeasonDetails(this.props.show.id, target.id)
+        this.props.getSeasonDetails(this.props.currentShow.id, target.id)
     }
 
     onWatchShowClick = () => {
-        this.props.addShowToUserWatchlist(this.props.show)
+        const {addShowToUserWatchlist, deleteShowFromWatchlist, currentShow} = this.props
+        debugger
+        if (this.isSubscribed()) {
+            deleteShowFromWatchlist(this.currentShowId())
+        }else{
+            addShowToUserWatchlist(currentShow)
+        }
+        
+    }
+
+    isSubscribed = () => {
+        const {currentShow, watchList} = this.props
+        return watchList.some(show => show.api_id === currentShow.id)
+    }
+
+    currentShowId = () => {
+        const { watchList, currentShow } = this.props
+        return watchList.find(show => show.api_id === currentShow.id).id
     }
 
     render(){
-        const { show } = this.props
-        if (show){
+        const { currentShow } = this.props
+        if (currentShow){
             return(
                 <div>
-                    <h3>{show.name}</h3>
-                    <Button
-                        onClick={this.onWatchShowClick}    
-                    >Subscribe!
-                    </Button>
+                    <h3>{currentShow.name}</h3>
+                    {localStorage.token ? 
+                        <Button
+                            onClick={this.onWatchShowClick}    
+                        >{this.isSubscribed() ? 'Unubscribe!' : 'Subscribe' }
+                        </Button> 
+                        : 
+                        null
+                    }
                     <div>
                         <Image 
-                            src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
+                            src={`https://image.tmdb.org/t/p/w500/${currentShow.poster_path}`}
                         />
+                        <div>{currentShow.overview}</div>
                     </div>
 
                     <div>
-                        {show.seasons.map(season => (
+                        {currentShow.seasons.map(season => (
                             <Button 
                                 circular 
                                 key={season.id}
@@ -55,9 +83,10 @@ class ShowDetails extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        show: state.showDetails
+        currentShow: state.showDetails,
+        watchList: state.watchList
     }
 }
 
-export default connect(mapStateToProps, actions)(ShowDetails);
+export default withRouter(connect(mapStateToProps, actions)(ShowDetails));
 

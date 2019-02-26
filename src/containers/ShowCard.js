@@ -7,7 +7,7 @@ import noImage from '../noImage.png'
 
 const ShowCard = (props) => {
     const { show, getShowDetails, clearSearchTerm, history } = props
-
+    
     const onCardClick = () => {
         getShowDetails(show.id)
         clearSearchTerm()
