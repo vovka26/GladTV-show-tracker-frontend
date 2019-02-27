@@ -6,11 +6,21 @@ import * as actions from '../redux/actions'
 
 const EpisodesTable = (props) => {
     const { seasonDetails } = props
+
     const onClick = (episode, props) => {
-        debugger
-        // props.delete_from_users_watchlist()
-        // props.addingEpisodeToWatchlist(episode)
+        if(isWatched(props, episode)){
+            debugger
+            props.deleteingEpisodeFromWatchList(episode.id)
+        }else{
+            props.addingEpisodeToWatchlist(episode, props.seasonDetails.id)
+        }
     }
+
+    const isWatched = (props, episode) => {
+        // debugger
+        return props.episodes.find(ep => ep.api_id === episode.id) ? true : false
+    }
+
     return(
         <div>
             {!seasonDetails ? null : 
@@ -21,7 +31,12 @@ const EpisodesTable = (props) => {
                                 <Table.Cell>{episode.episode_number}</Table.Cell>
                                 <Table.Cell>{episode.name}</Table.Cell>
                                 <Table.Cell>{episode.air_date}</Table.Cell>
-                                <Table.Cell><Icon color={true ? 'green' : 'grey'} onClick={() => onClick(episode, props)} name='eye' /></Table.Cell>
+                                {localStorage.token? 
+                                    <Table.Cell><Icon color={isWatched(props, episode) ? 'green' : 'grey'} onClick={() => onClick(episode, props)} name='eye' /></Table.Cell>
+                                    : 
+                                    null
+                                }
+                                
                             </Table.Row>
                         ))}
                         
@@ -35,7 +50,8 @@ const EpisodesTable = (props) => {
 const mapStateToProps = state => {
     return {
         seasonDetails: state.seasonDetails,
-        watchList: state.watchList
+        watchList: state.watchList,
+        episodes: state.episodes
     }
 }
 

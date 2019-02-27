@@ -85,7 +85,7 @@ const watchList = (state=[], action) => {
     }
 }
 
-const episodes = (state='', action) => {
+const episodes = (state=[], action) => {
     switch(action.type){
         case FETCH_WATCHED_EPISODES: 
             return action.payload
@@ -94,7 +94,10 @@ const episodes = (state='', action) => {
             return [...state, action.payload]
 
         case DELETE_EPISODE_FROM_WATCHLIST:
-            return null
+            const copy = state.slice()
+            const index = state.findIndex(episode => episode.id === action.payload.id)
+            copy.splice(index, 1)
+        return [...copy]
 
         default: 
             return state
