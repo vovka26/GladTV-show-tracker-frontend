@@ -56,6 +56,7 @@ class ShowDetails extends PureComponent {
                     <div>
                         <Image 
                             src={`https://image.tmdb.org/t/p/w500/${currentShow.poster_path}`}
+                            size='medium'
                         />
                         <div>{currentShow.overview}</div>
                     </div>

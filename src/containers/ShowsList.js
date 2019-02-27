@@ -8,7 +8,7 @@ const ShowList = (props) => {
     const {shows} = props
     if (shows) {
         return(
-            <div>
+            <div className='ui grid centered'>
                <Route path='/search' render={() => (
                   shows.map(show =>  
                     <ShowCard 

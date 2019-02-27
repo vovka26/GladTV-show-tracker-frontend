@@ -15,8 +15,13 @@ code {
 .movie-card {
   margin: 3%;
   text-align: center;
+  display: inline-block;
 }
 
 .searchbar {
-  margin-top: 0
+  margin-bottom: 1%;
+}
+
+.menu.navbar {
+  margin-bottom: 0;
 }
