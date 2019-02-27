@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
-import { Search } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 
@@ -20,8 +20,9 @@ class SearchBar extends PureComponent {
 
         return(
             <div>
-                <Search 
-                    onSearchChange={(e) => {
+                <Input 
+                    fluid icon='search'
+                    onChange={(e) => {
                         this.props.setSearchTerm(e.target.value)
                     }}
                     onKeyPress={this.handleOnEnter}

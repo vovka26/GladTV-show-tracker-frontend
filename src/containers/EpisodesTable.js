@@ -1,12 +1,15 @@
 import React from 'react';
 import { Table, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import * as actions from '../redux/actions'
 
 
 const EpisodesTable = (props) => {
     const { seasonDetails } = props
-    const onClick = (episode) => {
+    const onClick = (episode, props) => {
         debugger
+        // props.delete_from_users_watchlist()
+        // props.addingEpisodeToWatchlist(episode)
     }
     return(
         <div>
@@ -18,7 +21,7 @@ const EpisodesTable = (props) => {
                                 <Table.Cell>{episode.episode_number}</Table.Cell>
                                 <Table.Cell>{episode.name}</Table.Cell>
                                 <Table.Cell>{episode.air_date}</Table.Cell>
-                                <Table.Cell><Icon color={true ? 'green' : 'grey'} onClick={() => onClick(episode)} name='eye' /></Table.Cell>
+                                <Table.Cell><Icon color={true ? 'green' : 'grey'} onClick={() => onClick(episode, props)} name='eye' /></Table.Cell>
                             </Table.Row>
                         ))}
                         
@@ -31,8 +34,9 @@ const EpisodesTable = (props) => {
 
 const mapStateToProps = state => {
     return {
-        seasonDetails: state.seasonDetails
+        seasonDetails: state.seasonDetails,
+        watchList: state.watchList
     }
 }
 
-export default connect(mapStateToProps)(EpisodesTable)
+export default connect(mapStateToProps, actions)(EpisodesTable)

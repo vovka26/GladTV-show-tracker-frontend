@@ -1,7 +1,9 @@
 import { BASE_URL } from './index'
-import { SET_CURRENT_USER, USER_LOGOUT, ADDING_SHOW_TO_WATCHLIST, DELETING_SHOW_FROM_WATCHLIST } from './types';
+import { SET_CURRENT_USER, USER_LOGOUT, ADD_SHOW_TO_WATCHLIST, DELETE_SHOW_FROM_WATCHLIST, ADD_EPISODE_TO_WATCHLIST, DELETE_EPISODE_FROM_WATCHLIST } from './types';
 
-const userLogin = (username, password) => dispatch => {
+const token = localStorage.token
+
+export const userLogin = (username, password) => dispatch => {
     fetch(`${BASE_URL}/login`, {
         method: 'POST', 
         headers: {
@@ -17,14 +19,14 @@ const userLogin = (username, password) => dispatch => {
     .then(response => setUser(response, dispatch))
 }
 
-const userLogout = () => dispatch => {
+export const userLogout = () => dispatch => {
     localStorage.clear()
     dispatch ({
         type: USER_LOGOUT
     })
 }
 
-const setUser = (response, dispatch) => {
+export const setUser = (response, dispatch) => {
     if (response['success'] && response['token']) {
        localStorage.setItem('token', response['token'])
         dispatch({
@@ -41,7 +43,7 @@ const setUser = (response, dispatch) => {
     }
 }
 
-const checkToken = token => dispatch => {
+export const checkToken = () => dispatch => {
     fetch(`${BASE_URL}/profile`, {
         method: 'GET',
         headers: {
@@ -52,7 +54,7 @@ const checkToken = token => dispatch => {
     .then(data => setUser(data, dispatch))
 }
 
-const createUser = formData => dispatch => {
+export const createUser = formData => dispatch => {
     const {username, password, firstName, lastName} = formData
     
     fetch(`${BASE_URL}/newUser`,{
@@ -80,8 +82,7 @@ const createUser = formData => dispatch => {
     })
 }
 
-const addShowToUserWatchlist = show => dispatch => {
-	const token = localStorage.token
+export const addShowToUserWatchlist = show => dispatch => {
     const { name, vote_average, genres='N/A', id, poster_path  } = show
 	fetch(`http://localhost:3000/api/v1/shows`, {
 		method: 'POST',
@@ -95,6 +96,7 @@ const addShowToUserWatchlist = show => dispatch => {
             rating: vote_average, 
             genre: genres[0].name,
             api_id: id,
+            episodes: [],
             image_url: poster_path
 		})
 	})
@@ -107,14 +109,13 @@ const addingShowToWatchlist = (response, dispatch) => {
         alert('You are already following this show')
     }else{
         dispatch({
-                type: ADDING_SHOW_TO_WATCHLIST,
+                type: ADD_SHOW_TO_WATCHLIST,
                 payload: response
             })
         }
     }
 
-const deleteShowFromWatchlist = (showId) => dispatch => {
-    const token = localStorage.token
+export const deleteShowFromWatchlist = (showId) => dispatch => {
     fetch(`http://localhost:3000/api/v1/shows/${showId}`, {
         method: 'DELETE',
         headers: {
@@ -130,10 +131,57 @@ const deletingShowFromWatchlist = (response, dispatch) => {
         alert('something went wrong')
     }else{
         dispatch({
-            type: DELETING_SHOW_FROM_WATCHLIST,
+            type: DELETE_SHOW_FROM_WATCHLIST,
             payload: response.showData[0]
         })
     }
 }
 
-export { userLogin, setUser, checkToken, userLogout, createUser, addShowToUserWatchlist,deleteShowFromWatchlist }
+export const addingEpisodeToWatchlist = episode => dispatch => {
+    
+    fetch(`http://localhost:3000/api/v1/episodes`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Authentication': `Bearer ${token}`
+		},
+		body: JSON.stringify({
+            title: episode.name,
+            image_url: episode.still_path,
+           	air_date: episode.air_date,
+			show_id: episode.show_id,
+            season_id: episode.season_number,
+            api_id: episode.id
+		})
+	})
+		.then(res => res.json())
+		.then(response => addEpisodeToWatchlist(response, dispatch))
+}
+
+const addEpisodeToWatchlist = (response, dispatch) => {
+    console.log(response)
+    dispatch({
+            type: ADD_EPISODE_TO_WATCHLIST, 
+            payload: response.episodeData
+        })
+}
+
+export const deleteingEpisodeFromWatchList = episodeId => dispatch => {
+    fetch(`http://localhost:3000/api/v1/episodes/${episodeId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authentication': `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .then(response => deleteEpisodeFromWatchlist(response, dispatch))
+}
+
+const deleteEpisodeFromWatchlist = (response, dispatch) => {
+    console.log(response)
+    dispatch({
+        type: DELETE_EPISODE_FROM_WATCHLIST, 
+        payload: response.episodeData
+    })
+}

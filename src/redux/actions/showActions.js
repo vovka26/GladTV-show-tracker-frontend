@@ -2,7 +2,7 @@ import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST } from './types'
 
 import { BASE_URL } from './index'
 
-const getShows = () => (dispatch, getState) => {
+export const getShows = () => (dispatch, getState) => {
 	if (getState().searchTerm) {
 		const uriEncode = encodeURIComponent(getState().searchTerm)
 
@@ -17,7 +17,7 @@ const getShows = () => (dispatch, getState) => {
 	}
 }
 
-const getShowDetails = showId => dispatch => {
+export const getShowDetails = showId => dispatch => {
 	fetch(`${BASE_URL}/apishows/${showId}`)
 		.then(res => res.json())
 		.then(show =>
@@ -28,7 +28,7 @@ const getShowDetails = showId => dispatch => {
 		)
 }
 
-const getWatchList = () => dispatch => {
+export const getWatchList = () => dispatch => {
 	const token = localStorage.token
 	fetch(`${BASE_URL}/shows`, {
 		method: 'GET',
@@ -42,5 +42,3 @@ const getWatchList = () => dispatch => {
 		payload: response
 	}))
 }
-
-export { getShows, getShowDetails, getWatchList }

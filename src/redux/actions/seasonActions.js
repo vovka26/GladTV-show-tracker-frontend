@@ -2,7 +2,7 @@ import { FETCH_SEASON_EPISODES, CLEAR_FETCHED_EPISODE } from './types'
 
 import { BASE_URL } from './index'
 
-const getSeasonDetails = (showId, seasonId) => dispatch => {
+export const getSeasonDetails = (showId, seasonId) => dispatch => {
     fetch(`${BASE_URL}/seasons/${showId}/${seasonId}`)
         .then(res => res.json())
         .then(season => 
@@ -13,11 +13,9 @@ const getSeasonDetails = (showId, seasonId) => dispatch => {
         )
 }
 
-const clearSeasonDetails = () => dispatch => {
+export const clearSeasonDetails = () => dispatch => {
     dispatch({
         type: CLEAR_FETCHED_EPISODE, 
         payload: null
     })
 }
-
-export { getSeasonDetails, clearSeasonDetails }

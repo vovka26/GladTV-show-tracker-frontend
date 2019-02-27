@@ -21,7 +21,6 @@ class ShowDetails extends PureComponent {
 
     onWatchShowClick = () => {
         const {addShowToUserWatchlist, deleteShowFromWatchlist, currentShow} = this.props
-        debugger
         if (this.isSubscribed()) {
             deleteShowFromWatchlist(this.currentShowId())
         }else{

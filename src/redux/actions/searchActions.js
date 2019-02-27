@@ -1,17 +1,15 @@
 import { SET_SEARCH_TERM, CLEAR_SEARCH_TERM } from './types'
 
-const setSearchTerm = (searchTerm) => {
+export const setSearchTerm = (searchTerm) => {
 	return {
 		type: SET_SEARCH_TERM, 
 		payload: searchTerm
 	}
 }
 
-const clearSearchTerm = () => {
+export const clearSearchTerm = () => {
 	return {
 		type: CLEAR_SEARCH_TERM, 
 		payload: ''
 	}
 }
-
-export { setSearchTerm, clearSearchTerm }
