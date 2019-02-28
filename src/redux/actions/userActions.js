@@ -19,13 +19,6 @@ export const userLogin = (username, password) => dispatch => {
     .then(response => setUser(response, dispatch))
 }
 
-export const userLogout = () => dispatch => {
-    localStorage.clear()
-    dispatch ({
-        type: USER_LOGOUT
-    })
-}
-
 export const setUser = (response, dispatch) => {
     if (response['success'] && response['token']) {
        localStorage.setItem('token', response['token'])
@@ -41,6 +34,13 @@ export const setUser = (response, dispatch) => {
     }else{
         alert('something went wrong')
     }
+}
+
+export const userLogout = () => dispatch => {
+    localStorage.clear()
+    dispatch ({
+        type: USER_LOGOUT
+    })
 }
 
 export const checkToken = () => dispatch => {

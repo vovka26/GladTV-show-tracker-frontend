@@ -7,6 +7,9 @@ const shows = (state='', action) => {
         case FETCH_SHOWS: 
             return action.payload.results
 
+        case USER_LOGOUT: 
+            return ''
+
         default:
             return state;
     }
@@ -32,6 +35,9 @@ const showDetails = (state='', action) => {
         case FETCH_SHOW_DETAILS:
             return action.payload;
 
+        case USER_LOGOUT:
+            return '';
+
         default: 
             return state;
     }
@@ -45,6 +51,9 @@ const seasonDetails = (state=null, action) => {
 
         case CLEAR_FETCHED_EPISODE:
             return action.payload;
+
+        case USER_LOGOUT: 
+            return null;
 
         default: 
             return state;
@@ -78,29 +87,35 @@ const watchList = (state=[], action) => {
             const copy = state.slice()
             const index = state.findIndex(show => show.id === action.payload.id)
             copy.splice(index, 1)
-            return [...copy]
+            return [...copy];
+
+        case USER_LOGOUT:
+            return [];
 
         default:
-            return state
+            return state;
     }
 }
 
 const episodes = (state=[], action) => {
     switch(action.type){
         case FETCH_WATCHED_EPISODES: 
-            return action.payload
+            return action.payload;
 
         case ADD_EPISODE_TO_WATCHLIST: 
-            return [...state, action.payload]
+            return [...state, action.payload];
 
         case DELETE_EPISODE_FROM_WATCHLIST:
             const copy = state.slice()
             const index = state.findIndex(episode => episode.id === action.payload.id)
             copy.splice(index, 1)
-        return [...copy]
+        return [...copy];
+
+        case USER_LOGOUT: 
+            return [];
 
         default: 
-            return state
+            return state;
     }
 }
 
