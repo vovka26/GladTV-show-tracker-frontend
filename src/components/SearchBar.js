@@ -19,7 +19,7 @@ class SearchBar extends PureComponent {
 
     render() {
         return (
-            <Sticky>
+             <Sticky>
                 <Input
                     className='searchbar'
                     placeholder='Search for show...'
@@ -30,7 +30,7 @@ class SearchBar extends PureComponent {
                     onKeyPress={this.handleOnEnter}
                     value={this.props.searchTerm}
                 />
-            </Sticky>
+             </Sticky>
         )
     }
 }
