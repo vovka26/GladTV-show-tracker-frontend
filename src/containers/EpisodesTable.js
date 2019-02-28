@@ -9,7 +9,6 @@ const EpisodesTable = (props) => {
 
     const onClick = (episode, props) => {
         if(isWatched(props, episode)){
-            debugger
             props.deleteingEpisodeFromWatchList(episode.id)
         }else{
             props.addingEpisodeToWatchlist(episode, props.seasonDetails.id)
@@ -25,6 +24,16 @@ const EpisodesTable = (props) => {
         <div>
             {!seasonDetails ? null : 
                 <Table>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Episode</Table.HeaderCell>
+                            <Table.HeaderCell>Name</Table.HeaderCell>
+                            <Table.HeaderCell>Air date</Table.HeaderCell>
+                            {localStorage.token? 
+                            <Table.HeaderCell>Watched</Table.HeaderCell>
+                            : null }
+                        </Table.Row>
+                    </Table.Header>
                     <Table.Body>
                         { seasonDetails.episodes.map(episode => (
                             <Table.Row key={episode.id}>
