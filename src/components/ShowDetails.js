@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react'; 
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import { Image, Button } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
+import { Image, Button, Grid } from 'semantic-ui-react';
 import * as actions from '../redux/actions'
 import EpisodesTable from '../containers/EpisodesTable';
 
 class ShowDetails extends PureComponent {
-    componentWillMount(){
+    componentWillMount() {
         const showId = this.props.match.params.id
         this.props.getShowDetails(showId)
         if (localStorage.token) {
@@ -17,23 +17,23 @@ class ShowDetails extends PureComponent {
     state = {
         seasonId: null
     }
-    
-    onSeasonClick = ({target}) => {
+
+    onSeasonClick = ({ target }) => {
         this.props.getSeasonDetails(this.props.currentShow.id, target.id)
     }
 
     onWatchShowClick = () => {
-        const {addShowToUserWatchlist, deleteShowFromWatchlist, currentShow} = this.props
+        const { addShowToUserWatchlist, deleteShowFromWatchlist, currentShow } = this.props
         if (this.isSubscribed()) {
             deleteShowFromWatchlist(this.currentShowId())
-        }else{
+        } else {
             addShowToUserWatchlist(currentShow)
         }
-        
+
     }
 
     isSubscribed = () => {
-        const {currentShow, watchList} = this.props
+        const { currentShow, watchList } = this.props
         return watchList.some(show => show.api_id === currentShow.id)
     }
 
@@ -42,43 +42,63 @@ class ShowDetails extends PureComponent {
         return watchList.find(show => show.api_id === currentShow.id).id
     }
 
-    render(){
-        const { currentShow } = this.props
-        if (currentShow){
-            return(
-                <div>
-                    <h3>{currentShow.name}</h3>
-                    {localStorage.token ? 
-                        <Button
-                            onClick={this.onWatchShowClick} 
-                            content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe' }
-                        />
-                        : 
-                        null
-                    }
-                    <div>
-                        <Image 
-                            src={`https://image.tmdb.org/t/p/w500/${currentShow.poster_path}`}
-                            size='medium'
-                        />
-                        <div>{currentShow.overview}</div>
-                    </div>
+    seasonsForCurrentShow = () => {
+        return (this.props.currentShow.seasons.map(season => (
+            <Button
+                className='season-button'
+                circular
+                key={season.id}
+                id={season.season_number}
+                onClick={this.onSeasonClick}
+                content={season.season_number === 0 ?
+                    'Specials' : season.season_number}
+            />
+        )))
+    }
 
-                    <div>
-                        {currentShow.seasons.map(season => (
-                            <Button 
-                                circular 
-                                key={season.id}
-                                id={season.season_number}
-                                onClick={this.onSeasonClick}
-                                content={season.season_number}
-                            /> 
-                        ))}
+    render() {
+        const { currentShow } = this.props
+        if (currentShow) {
+            return (
+                <div className='show-details-container'>
+
+                    <Grid columns={2} width={16} className='show-overview-block'>
+                        <Grid.Row className='show-title'>
+                            <h2>{currentShow.name}</h2>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column width={6} >
+
+                                <Image
+                                    src={`https://image.tmdb.org/t/p/w500/${currentShow.poster_path}`}
+                                    size='large'
+                                />
+                            </Grid.Column>
+                            <Grid.Column width={10}>
+                                <h3>Overview</h3>
+                                {currentShow.overview}
+                                <div>
+                                    {localStorage.token ?
+                                        <Button
+                                            onClick={this.onWatchShowClick}
+                                            content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
+                                        />
+                                        :
+                                        null
+                                    }
+                                </div>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+
+                    <div className='seasons-buttons-container'>
+                        {this.seasonsForCurrentShow()}
+                        
                     </div>
-                        <EpisodesTable />
+                    <EpisodesTable />
                 </div>
             )
-        }else{
+        } else {
             return null
         }
     }

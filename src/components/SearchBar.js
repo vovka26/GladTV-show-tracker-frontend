@@ -17,20 +17,20 @@ class SearchBar extends PureComponent {
         }
     }
 
-    render(){
-        return(
-            <div className='searchbar'>
-                <Sticky>
-                    <Input 
-                        fluid icon='search'
-                        onChange={(e) => {
-                            this.props.setSearchTerm(e.target.value)
-                        }}
-                        onKeyPress={this.handleOnEnter}
-                        value={this.props.searchTerm}
-                    />
-                </Sticky>
-            </div>
+    render() {
+        return (
+            <Sticky>
+                <Input
+                    className='searchbar'
+                    placeholder='Search for show...'
+                    fluid icon='search'
+                    onChange={(e) => {
+                        this.props.setSearchTerm(e.target.value)
+                    }}
+                    onKeyPress={this.handleOnEnter}
+                    value={this.props.searchTerm}
+                />
+            </Sticky>
         )
     }
 }

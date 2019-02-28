@@ -22,7 +22,10 @@ const EpisodesTable = (props) => {
 
     const tableEpisodes = () => {
         return seasonDetails.episodes.map(episode => (
-            <Table.Row key={episode.id} className='episodes-table-row'>
+            <Table.Row 
+                key={episode.id} 
+                className='episodes-table-row'
+            >
                 <Table.Cell 
                     content={episode.episode_number} 
                 />
@@ -34,13 +37,14 @@ const EpisodesTable = (props) => {
                     content={episode.air_date} 
                 />
                 {localStorage.token ?
-                    <Table.Cell>
-                        <Icon 
-                            color={isWatched(props, episode) ? 
-                                'green' : 'grey'} 
-                            onClick={() => onClick(episode, props)} name='eye' 
-                        />
-                    </Table.Cell>
+                    <Table.Cell
+                        content={
+                            <Icon 
+                                color={isWatched(props, episode) ? 'green' : 'grey'} 
+                                onClick={() => onClick(episode, props)} name='eye' 
+                            />
+                        } 
+                    />
                     :
                     null
                 }
@@ -50,9 +54,13 @@ const EpisodesTable = (props) => {
     return (
         <div className='episodes-table'>
             {!seasonDetails ? null :
-                <Table className='ui centered'>
+                <Table 
+                    className='ui centered' 
+                    selectable
+                >
                     <Table.Header>
                         <Table.Row className='episodes-table-row'>
+
                             <Table.HeaderCell 
                                 className='episodes-table-cell' 
                                 content='Episode' 
@@ -76,6 +84,7 @@ const EpisodesTable = (props) => {
                                 : null}
                         </Table.Row>
                     </Table.Header>
+
                     <Table.Body>
                         {tableEpisodes()}
                     </Table.Body>
