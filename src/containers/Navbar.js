@@ -28,20 +28,12 @@ const Navbar = (props) => {
                     </Menu.Menu>
                 </Fragment>
             ) : (
-                <Fragment>
                 <Menu.Item 
                     as={NavLink}
                     to='/login'
                     name="Login"
                     active={pathname === '/login'}
-                />
-                <Menu.Item 
-                    as={NavLink}
-                    to='/signup'
-                    name="SignUp"
-                    active={pathname === '/signup'}
-                />
-                </Fragment>)
+                /> )
             }  
         </Menu>
     )

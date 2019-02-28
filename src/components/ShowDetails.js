@@ -9,9 +9,9 @@ class ShowDetails extends PureComponent {
     componentWillMount(){
         const showId = this.props.match.params.id
         this.props.getShowDetails(showId)
-        // if (localStorage.token) {
+        if (localStorage.token) {
             this.props.gettingEpisodesForSeason(showId)
-        // }
+        }
     }
 
     state = {
@@ -19,12 +19,7 @@ class ShowDetails extends PureComponent {
     }
     
     onSeasonClick = ({target}) => {
-        
-        // const hey = this
-        
         this.props.getSeasonDetails(this.props.currentShow.id, target.id)
-        // debugger
-        // this.props.gettingEpisodesForSeason(this.props.match.params.id, this.props.seasonDetails.id)
     }
 
     onWatchShowClick = () => {
@@ -55,9 +50,9 @@ class ShowDetails extends PureComponent {
                     <h3>{currentShow.name}</h3>
                     {localStorage.token ? 
                         <Button
-                            onClick={this.onWatchShowClick}    
-                        >{this.isSubscribed() ? 'Unubscribe!' : 'Subscribe' }
-                        </Button> 
+                            onClick={this.onWatchShowClick} 
+                            content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe' }
+                        />
                         : 
                         null
                     }
@@ -76,8 +71,8 @@ class ShowDetails extends PureComponent {
                                 key={season.id}
                                 id={season.season_number}
                                 onClick={this.onSeasonClick}
-                            > {season.season_number}
-                            </Button>
+                                content={season.season_number}
+                            /> 
                         ))}
                     </div>
                         <EpisodesTable />

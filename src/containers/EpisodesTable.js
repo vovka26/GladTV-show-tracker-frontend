@@ -8,47 +8,76 @@ const EpisodesTable = (props) => {
     const { seasonDetails } = props
 
     const onClick = (episode, props) => {
-        if(isWatched(props, episode)){
+
+        if (isWatched(props, episode)) {
             props.deleteingEpisodeFromWatchList(episode.id)
-        }else{
+        } else {
             props.addingEpisodeToWatchlist(episode, props.seasonDetails.id)
         }
     }
 
     const isWatched = (props, episode) => {
-        // debugger
         return props.episodes.find(ep => ep.api_id === episode.id) ? true : false
     }
 
-    return(
-        <div>
-            {!seasonDetails ? null : 
-                <Table>
+    const tableEpisodes = () => {
+        return seasonDetails.episodes.map(episode => (
+            <Table.Row key={episode.id} className='episodes-table-row'>
+                <Table.Cell 
+                    content={episode.episode_number} 
+                />
+                <Table.Cell 
+                    className='episodes-table-cell-name' 
+                    content={episode.name} 
+                />
+                <Table.Cell 
+                    content={episode.air_date} 
+                />
+                {localStorage.token ?
+                    <Table.Cell>
+                        <Icon 
+                            color={isWatched(props, episode) ? 
+                                'green' : 'grey'} 
+                            onClick={() => onClick(episode, props)} name='eye' 
+                        />
+                    </Table.Cell>
+                    :
+                    null
+                }
+            </Table.Row>
+        ))
+    }
+    return (
+        <div className='episodes-table'>
+            {!seasonDetails ? null :
+                <Table className='ui centered'>
                     <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>Episode</Table.HeaderCell>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Air date</Table.HeaderCell>
-                            {localStorage.token? 
-                            <Table.HeaderCell>Watched</Table.HeaderCell>
-                            : null }
+                        <Table.Row className='episodes-table-row'>
+                            <Table.HeaderCell 
+                                className='episodes-table-cell' 
+                                content='Episode' 
+                            />
+
+                            <Table.HeaderCell 
+                                className='episodes-table-cell' 
+                                content='Name' 
+                            />
+
+                            <Table.HeaderCell 
+                                className='episodes-table-cell' 
+                                content='Air date' 
+                            />
+
+                            {localStorage.token ?
+                                <Table.HeaderCell 
+                                    className='episodes-table-cell' 
+                                    content='Watched' 
+                                />
+                                : null}
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        { seasonDetails.episodes.map(episode => (
-                            <Table.Row key={episode.id}>
-                                <Table.Cell>{episode.episode_number}</Table.Cell>
-                                <Table.Cell>{episode.name}</Table.Cell>
-                                <Table.Cell>{episode.air_date}</Table.Cell>
-                                {localStorage.token? 
-                                    <Table.Cell><Icon color={isWatched(props, episode) ? 'green' : 'grey'} onClick={() => onClick(episode, props)} name='eye' /></Table.Cell>
-                                    : 
-                                    null
-                                }
-                                
-                            </Table.Row>
-                        ))}
-                        
+                        {tableEpisodes()}
                     </Table.Body>
                 </Table>
             }

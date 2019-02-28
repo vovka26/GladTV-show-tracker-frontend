@@ -25,3 +25,19 @@ code {
 .menu.navbar {
   margin-bottom: 0;
 }
+
+.ui.segment.login-signup {
+  text-align: center;
+  margin: 18% auto;
+  max-width: 50%;
+  background-color: #77ff9252;
+}
+
+.episodes-table {
+  max-width: 80%;
+  margin: auto;
+}
+
+.episodes-table-row {
+  text-align: center;
+}
