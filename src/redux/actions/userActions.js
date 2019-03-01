@@ -1,8 +1,6 @@
 import { BASE_URL } from './index'
 import { SET_CURRENT_USER, USER_LOGOUT, ADD_SHOW_TO_WATCHLIST, DELETE_SHOW_FROM_WATCHLIST, ADD_EPISODE_TO_WATCHLIST, DELETE_EPISODE_FROM_WATCHLIST } from './types';
 
-const token = localStorage.token
-
 export const userLogin = (username, password) => dispatch => {
     fetch(`${BASE_URL}/login`, {
         method: 'POST', 
@@ -47,7 +45,7 @@ export const checkToken = () => dispatch => {
     fetch(`${BASE_URL}/profile`, {
         method: 'GET',
         headers: {
-            'Authentication': `Bearer ${token}`
+            'Authentication': `Bearer ${localStorage.token}`
         }
     })
     .then(res => res.json())
@@ -89,7 +87,7 @@ export const addShowToUserWatchlist = show => dispatch => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',
-			'Authentication': `Bearer ${token}`
+			'Authentication': `Bearer ${localStorage.token}`
 		},
 		body: JSON.stringify({
             title: name,
@@ -119,7 +117,7 @@ export const deleteShowFromWatchlist = (showId) => dispatch => {
     fetch(`http://localhost:3000/api/v1/shows/${showId}`, {
         method: 'DELETE',
         headers: {
-            'Authentication': `Bearer ${token}`
+            'Authentication': `Bearer ${localStorage.token}`
         }
     })
     .then(res => res.json())
@@ -144,7 +142,7 @@ export const addingEpisodeToWatchlist = (episode, seasonId) => dispatch => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',
-			'Authentication': `Bearer ${token}`
+			'Authentication': `Bearer ${localStorage.token}`
 		},
 		body: JSON.stringify({
             title: episode.name,
@@ -171,7 +169,7 @@ export const deleteingEpisodeFromWatchList = episodeId => dispatch => {
     fetch(`http://localhost:3000/api/v1/episodes/${episodeId}`, {
         method: 'DELETE',
         headers: {
-            'Authentication': `Bearer ${token}`
+            'Authentication': `Bearer ${localStorage.token}`
         }
     })
     .then(res => res.json())

@@ -1,13 +1,11 @@
 import { BASE_URL } from './index';
 import { FETCH_WATCHED_EPISODES } from './types';
 
-const token = localStorage.token
-
-export const gettingEpisodesForSeason = (showId, seasonId) => dispatch => {
-    fetch(`${BASE_URL}/shows/${showId}/${seasonId}/episodes`, {
+export const gettingEpisodesForSeason = (showId) => dispatch => {
+    fetch(`${BASE_URL}/shows/${showId}/episodes`, {
         method: 'GET',
         headers: {
-			'Authentication': `Bearer ${token}`
+			'Authentication': `Bearer ${localStorage.token}`
         }
     })
     .then(res=>res.json())
@@ -16,7 +14,7 @@ export const gettingEpisodesForSeason = (showId, seasonId) => dispatch => {
 
 const gotEpisodesForSeason = (response, dispatch) => {
     if (response.error) {
-        alert('elements were not recieved')
+        console.log('user does not have any episodes')
     }else{
         dispatch({
             type: FETCH_WATCHED_EPISODES, 

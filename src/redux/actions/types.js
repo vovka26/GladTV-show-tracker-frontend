@@ -22,3 +22,6 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const CREATE_USER = 'CREATE_USER';
 export const ADD_SHOW_TO_WATCHLIST = 'ADD_SHOW_TO_WATCHLIST';
 export const DELETE_SHOW_FROM_WATCHLIST = 'DELETE_SHOW_FROM_WATCHLIST';
+
+//mixed actions
+export const RESET_SHOW_PAGE = 'RESET_SHOW_PAGE';

@@ -7,11 +7,21 @@ import EpisodesTable from '../containers/EpisodesTable';
 
 class ShowDetails extends PureComponent {
     componentWillMount() {
+
+        this.props.clearSearchTerm()
         const showId = this.props.match.params.id
         this.props.getShowDetails(showId)
+
         if (localStorage.token) {
             this.props.gettingEpisodesForSeason(showId)
         }
+
+        
+        
+    }
+
+    componentWillUnmount() {
+        this.props.resetShowPage()
     }
 
     state = {

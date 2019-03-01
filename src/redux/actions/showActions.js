@@ -1,4 +1,4 @@
-import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST } from './types'
+import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST, RESET_SHOW_PAGE } from './types'
 
 import { BASE_URL } from './index'
 
@@ -41,4 +41,10 @@ export const getWatchList = () => dispatch => {
 		type: GET_WATCHLIST,
 		payload: response
 	}))
+}
+
+export const resetShowPage = () => dispatch => {
+	return dispatch({
+		type: RESET_SHOW_PAGE
+	})
 }

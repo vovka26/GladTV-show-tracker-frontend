@@ -8,7 +8,6 @@ const EpisodesTable = (props) => {
     const { seasonDetails } = props
 
     const onClick = (episode, props) => {
-
         if (isWatched(props, episode)) {
             props.deleteingEpisodeFromWatchList(episode.id)
         } else {

@@ -6,11 +6,9 @@ import * as actions from '../redux/actions';
 import noImage from '../noImage.png'
 
 const ShowCard = (props) => {
-    const { show, getShowDetails, clearSearchTerm, history } = props
+    const { show, history } = props
     
     const onCardClick = () => {
-        getShowDetails(show.id)
-        clearSearchTerm()
         history.push(`/shows/${show.id}`)
     }
     

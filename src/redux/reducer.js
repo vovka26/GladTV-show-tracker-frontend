@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
-import { FETCH_SHOWS, FETCH_SHOW_DETAILS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, FETCH_SEASON_EPISODES, CLEAR_FETCHED_EPISODE, SET_CURRENT_USER, USER_LOGOUT, ADD_SHOW_TO_WATCHLIST, DELETE_SHOW_FROM_WATCHLIST, GET_WATCHLIST, ADD_EPISODE_TO_WATCHLIST, DELETE_EPISODE_FROM_WATCHLIST, FETCH_WATCHED_EPISODES } from './actions/types'
+import { FETCH_SHOWS, FETCH_SHOW_DETAILS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, FETCH_SEASON_EPISODES, CLEAR_FETCHED_EPISODE, SET_CURRENT_USER, USER_LOGOUT, ADD_SHOW_TO_WATCHLIST, DELETE_SHOW_FROM_WATCHLIST, GET_WATCHLIST, ADD_EPISODE_TO_WATCHLIST, DELETE_EPISODE_FROM_WATCHLIST, FETCH_WATCHED_EPISODES, RESET_SHOW_PAGE } from './actions/types'
 
 const shows = (state='', action) => {
     switch(action.type){
 
         case FETCH_SHOWS: 
-            return action.payload.results
+            return action.payload.results;
 
         case USER_LOGOUT: 
-            return ''
+            return '';
 
         default:
             return state;
@@ -35,7 +35,7 @@ const showDetails = (state='', action) => {
         case FETCH_SHOW_DETAILS:
             return action.payload;
 
-        case USER_LOGOUT:
+        case RESET_SHOW_PAGE:
             return '';
 
         default: 
@@ -54,6 +54,9 @@ const seasonDetails = (state=null, action) => {
 
         case USER_LOGOUT: 
             return null;
+
+        case RESET_SHOW_PAGE:
+            return '';
 
         default: 
             return state;
@@ -107,11 +110,15 @@ const episodes = (state=[], action) => {
 
         case DELETE_EPISODE_FROM_WATCHLIST:
             const copy = state.slice()
-            const index = state.findIndex(episode => episode.id === action.payload.id)
+            const index = state.findIndex(episode => episode.id === action.payload[0].id)
             copy.splice(index, 1)
+
         return [...copy];
 
         case USER_LOGOUT: 
+            return [];
+        
+        case RESET_SHOW_PAGE:
             return [];
 
         default: 
