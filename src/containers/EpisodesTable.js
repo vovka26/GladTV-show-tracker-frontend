@@ -50,6 +50,7 @@ const EpisodesTable = (props) => {
             </Table.Row>
         ))
     }
+    
     return (
         <div className='episodes-table'>
             {!seasonDetails ? null :

@@ -21,6 +21,12 @@ code {
   display: inline-block;
 }
 
+.searchbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .ui.input input {
   margin-bottom: 1%;
   border-color: transparent;

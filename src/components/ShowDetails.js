@@ -15,9 +15,6 @@ class ShowDetails extends PureComponent {
         if (localStorage.token) {
             this.props.gettingEpisodesForSeason(showId)
         }
-
-        
-        
     }
 
     componentWillUnmount() {

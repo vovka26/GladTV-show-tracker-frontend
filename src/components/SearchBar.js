@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
-import { Input, Sticky } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
-
-
 
 class SearchBar extends PureComponent {
     handleOnEnter = (e) => {
@@ -19,9 +17,8 @@ class SearchBar extends PureComponent {
 
     render() {
         return (
-             <Sticky>
+            <div className='searchbar'>
                 <Input
-                    className='searchbar'
                     placeholder='Search for show...'
                     fluid icon='search'
                     onChange={(e) => {
@@ -30,7 +27,7 @@ class SearchBar extends PureComponent {
                     onKeyPress={this.handleOnEnter}
                     value={this.props.searchTerm}
                 />
-             </Sticky>
+            </div>
         )
     }
 }
