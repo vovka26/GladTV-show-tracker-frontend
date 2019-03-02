@@ -5,18 +5,25 @@ import * as actions from '../redux/actions'
 
 
 const EpisodesTable = (props) => {
-    const { seasonDetails } = props
+    const { seasonDetails, addShowToUserWatchlist, currentShow, addingEpisodeToWatchlist, deleteingEpisodeFromWatchList } = props
 
     const onClick = (episode, props) => {
         if (isWatched(props, episode)) {
-            props.deleteingEpisodeFromWatchList(episode.id)
+            deleteingEpisodeFromWatchList(episode.id)
         } else {
-            props.addingEpisodeToWatchlist(episode, props.seasonDetails.id)
+            if (!isSubscribedForShow(props, episode.show_id)) {
+                addShowToUserWatchlist(currentShow)
+            }
+            addingEpisodeToWatchlist(episode, seasonDetails.id)
         }
     }
 
     const isWatched = (props, episode) => {
         return props.episodes.find(ep => ep.api_id === episode.id) ? true : false
+    }
+
+    const isSubscribedForShow = (props, showId) => {
+        return props.watchList.find(show => show.api_id === showId) ? true : false
     }
 
     const tableEpisodes = () => {
@@ -96,6 +103,7 @@ const EpisodesTable = (props) => {
 
 const mapStateToProps = state => {
     return {
+        currentShow: state.showDetails,
         seasonDetails: state.seasonDetails,
         watchList: state.watchList,
         episodes: state.episodes

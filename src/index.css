@@ -8,6 +8,7 @@ body {
   line-height: 1.4em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e8e8e94a;
 }
 
 code {
@@ -41,7 +42,7 @@ code {
   text-align: center;
   margin: 18% auto;
   max-width: 50%;
-  background-color: #77ff9252;
+  background-color: #77e8ff52;
 }
 
 .show-details-container {

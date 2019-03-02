@@ -36,7 +36,6 @@ class ShowDetails extends PureComponent {
         } else {
             addShowToUserWatchlist(currentShow)
         }
-
     }
 
     isSubscribed = () => {

@@ -136,7 +136,6 @@ const deletingShowFromWatchlist = (response, dispatch) => {
 }
 
 export const addingEpisodeToWatchlist = (episode, seasonId) => dispatch => {
-    
     fetch(`http://localhost:3000/api/v1/episodes`, {
 		method: 'POST',
 		headers: {
