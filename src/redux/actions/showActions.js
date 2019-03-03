@@ -2,11 +2,11 @@ import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST, RESET_SHOW_PAGE, FETCH_
 
 import { BASE_URL } from './index'
 
-export const getShows = () => (dispatch, getState) => {
+export const getShows = (pageNum=null) => (dispatch, getState) => {
 	if (getState().searchTerm) {
 		const uriEncode = encodeURIComponent(getState().searchTerm)
 
-		fetch(`${BASE_URL}/apishows?query=${uriEncode}`)
+		fetch(`${BASE_URL}/apishows?query=${uriEncode}&page=${pageNum}`)
 			.then(res => res.json())
 			.then(shows =>
 				dispatch({

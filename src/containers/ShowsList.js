@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Route } from 'react-router-dom';
 import * as actions from '../redux/actions'
 import ShowCard from './ShowCard';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import LoadingImage from './LoadingImage'
 
 class ShowList extends PureComponent {
     componentWillMount() {
@@ -16,7 +15,7 @@ class ShowList extends PureComponent {
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.props.resetShows()
         this.props.clearSearchTerm()
     }
@@ -26,22 +25,14 @@ class ShowList extends PureComponent {
         return (
             shows ?
                 <div className='ui grid centered'>
-                    <Route path='/search' render={() => (
-                        shows.map(show =>
-                            <ShowCard
-                                key={show.id}
-                                show={show}
-                            />)
-                    )} />
+                    {shows.map(show =>
+                        <ShowCard
+                            key={show.id}
+                            show={show}
+                        />)}
                 </div>
                 :
-                <Dimmer active inverted>
-                    <Loader
-                        size='large'
-                        inverted
-                        content='Loading'
-                    />
-                </Dimmer>
+               <LoadingImage />
         )
     }
 }

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import WatchListCard from '../containers/WatchListCard';
-import * as actions from '../redux/actions'
-import { Dimmer, Loader } from 'semantic-ui-react';
-
+import * as actions from '../redux/actions';
+import LoadingImage from '../containers/LoadingImage';
 class WatchList extends Component {
     componentWillMount() {
         if (!this.props.watchList) {
@@ -25,13 +24,7 @@ class WatchList extends Component {
                         ))}
                     </div>
                     :
-                    <Dimmer active inverted>
-                        <Loader
-                            size='large'
-                            inverted
-                            content='Loading'
-                        />
-                    </Dimmer>
+                    <LoadingImage />
         )
     }
 }

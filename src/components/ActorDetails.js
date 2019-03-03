@@ -5,7 +5,7 @@ import { Image } from 'semantic-ui-react';
 import * as actions from '../redux/actions';
 import noActorImg from '../noImageActor.png';
 import ShowCard from '../containers/ShowCard';
-import { Dimmer, Loader } from 'semantic-ui-react';
+import LoadingImage from '../containers/LoadingImage'
 import uuidv5 from 'uuid';
 
 class ActorDetails extends PureComponent {
@@ -39,13 +39,7 @@ class ActorDetails extends PureComponent {
                     ))}
                 </div>
                 :
-                <Dimmer active inverted>
-                    <Loader 
-                        size='large' 
-                        inverted
-                        content='Loading'
-                    />
-                </Dimmer>
+                <LoadingImage />
         )
     }
 }

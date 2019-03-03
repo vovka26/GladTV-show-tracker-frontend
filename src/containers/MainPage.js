@@ -1,11 +1,11 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Loader, Dimmer } from 'semantic-ui-react';
 import * as actions from '../redux/actions';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import noImage from '../noImage.png'
+import LoadingImage from './LoadingImage';
 
 class MainPage extends PureComponent {
     componentWillMount() {
@@ -48,13 +48,7 @@ class MainPage extends PureComponent {
                 </Carousel>
             </Fragment>
             :
-            <Dimmer active inverted>
-                <Loader
-                    size='large'
-                    inverted
-                    content='Loading'
-                />
-            </Dimmer>
+            <LoadingImage />
         )
     }
 }
