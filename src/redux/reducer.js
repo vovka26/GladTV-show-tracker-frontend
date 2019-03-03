@@ -21,6 +21,13 @@ const shows = (state='', action) => {
     }
 }
 
+// const getMoreShows = (state=[], action) => {
+//     switch (action.type){
+//         case default: 
+//             return state;
+//     }
+// }
+
 const searchTerm = (state='', action) => {
     switch (action.type) {
 

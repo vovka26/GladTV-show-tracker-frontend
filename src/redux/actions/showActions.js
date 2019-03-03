@@ -5,7 +5,6 @@ import { BASE_URL } from './index'
 export const getShows = (pageNum=null) => (dispatch, getState) => {
 	if (getState().searchTerm) {
 		const uriEncode = encodeURIComponent(getState().searchTerm)
-
 		fetch(`${BASE_URL}/apishows?query=${uriEncode}&page=${pageNum}`)
 			.then(res => res.json())
 			.then(shows =>
