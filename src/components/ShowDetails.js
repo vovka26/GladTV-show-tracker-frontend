@@ -86,6 +86,17 @@ class ShowDetails extends PureComponent {
                                     <Grid.Row>
                                         <h3>Overview</h3>
                                         {currentShow.overview}
+                                        {currentShow.next_episode_to_air ? 
+                                            <h4> 
+                                            Next episode: { 
+                                                currentShow.next_episode_to_air.air_date
+                                            }</h4>  :
+                                            <h4>
+                                            Last episode: {
+                                                currentShow.last_episode_to_air.air_date
+                                            }
+                                            </h4>
+                                        }
                                     </Grid.Row>
                                     <Grid.Row>
                                         <div>
