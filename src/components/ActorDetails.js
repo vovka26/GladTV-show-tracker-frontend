@@ -40,7 +40,7 @@ class ActorDetails extends PureComponent {
                 :
                 <Dimmer active inverted>
                     <Loader 
-                        size='huge' 
+                        size='large' 
                         inverted
                         content='Loading'
                     />

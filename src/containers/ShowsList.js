@@ -21,7 +21,7 @@ const ShowList = (props) => {
             :
             <Dimmer active inverted>
                 <Loader
-                    size='huge'
+                    size='large'
                     inverted
                     content='Loading'
                 />

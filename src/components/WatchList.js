@@ -27,7 +27,7 @@ class WatchList extends Component {
                     :
                     <Dimmer active inverted>
                         <Loader
-                            size='huge'
+                            size='large'
                             inverted
                             content='Loading'
                         />

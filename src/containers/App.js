@@ -12,6 +12,7 @@ import SignUp from '../components/SignUp';
 import WatchList from '../components/WatchList';
 import Navbar from './Navbar';
 import ActorDetails from '../components/ActorDetails';
+import MainPage from './MainPage';
 
 class App extends PureComponent {
   componentWillMount(){
@@ -28,7 +29,7 @@ class App extends PureComponent {
         <Navbar />
         <SearchBar /> 
         <Switch>
-          {/* <Route path='/' component={MainPage} /> */}
+          <Route path='/home' component={MainPage} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
           <Route path='/watchlist' component={WatchList} />
