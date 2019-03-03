@@ -6,8 +6,11 @@ import * as actions from '../redux/actions'
 import EpisodesTable from '../containers/EpisodesTable';
 import ActorsList from '../containers/ActorsList';
 import { Dimmer, Loader } from 'semantic-ui-react';
+import noImage from '../noImage.png'
+
 
 class ShowDetails extends PureComponent {
+
     componentWillMount() {
 
         this.props.clearSearchTerm()
@@ -21,10 +24,6 @@ class ShowDetails extends PureComponent {
 
     componentWillUnmount() {
         this.props.resetShowPage()
-    }
-
-    state = {
-        seasonId: null
     }
 
     onSeasonClick = ({ target }) => {
@@ -66,6 +65,7 @@ class ShowDetails extends PureComponent {
 
     render() {
         const { currentShow } = this.props
+        const imgSrc = currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
             return (
                 currentShow ?
                     <div className='show-details-container'>
@@ -78,7 +78,7 @@ class ShowDetails extends PureComponent {
                                 <Grid.Column width={6} >
 
                                     <Image
-                                        src={`https://image.tmdb.org/t/p/original/${currentShow.poster_path}`}
+                                        src={imgSrc}
                                         size='large'
                                     />
                                 </Grid.Column>

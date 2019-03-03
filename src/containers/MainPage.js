@@ -5,6 +5,7 @@ import { Loader, Dimmer } from 'semantic-ui-react';
 import * as actions from '../redux/actions';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import noImage from '../noImage.png'
 
 class MainPage extends PureComponent {
     componentWillMount() {
@@ -34,7 +35,7 @@ class MainPage extends PureComponent {
                                 onClick={(e) => this.onBannerClick(e, show)}
                             >
                                 <img
-                                    src={`https://image.tmdb.org/t/p/original${show.backdrop_path}`}
+                                    src={show.poster_path ? `https://image.tmdb.org/t/p/original/${show.backdrop_path}` : noImage}
                                     alt='hello'
                                 />
                                 <p className="legend">
