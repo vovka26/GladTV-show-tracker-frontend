@@ -5,6 +5,7 @@ import { Image, Button, Grid } from 'semantic-ui-react';
 import * as actions from '../redux/actions'
 import EpisodesTable from '../containers/EpisodesTable';
 import ActorsList from '../containers/ActorsList';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 class ShowDetails extends PureComponent {
     componentWillMount() {
@@ -65,65 +66,70 @@ class ShowDetails extends PureComponent {
 
     render() {
         const { currentShow } = this.props
-        if (currentShow) {
             return (
-                <div className='show-details-container'>
+                currentShow ?
+                    <div className='show-details-container'>
 
-                    <Grid columns={2} width={16} className='show-overview-block'>
-                        <Grid.Row className='show-title'>
-                            <h2>{currentShow.name}</h2>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column width={6} >
+                        <Grid columns={2} width={16} className='show-overview-block'>
+                            <Grid.Row className='show-title'>
+                                <h2>{currentShow.name}</h2>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column width={6} >
 
-                                <Image
-                                    src={`https://image.tmdb.org/t/p/w500/${currentShow.poster_path}`}
-                                    size='large'
-                                />
-                            </Grid.Column>
-                            <Grid.Column width={10}>
-                                <Grid.Row>
-                                    <h3>Overview</h3>
-                                    {currentShow.overview}
-                                </Grid.Row>
-                                <Grid.Row>
-                                    <div>
-                                        {localStorage.token ?
-                                            <Button
-                                                onClick={this.onWatchShowClick}
-                                                content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
-                                            />
-                                            :
-                                            null
-                                        }
-                                    </div>
-                                </Grid.Row>
-                                <Grid.Row>
-                                    <ActorsList />
-                                </Grid.Row>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                                    <Image
+                                        src={`https://image.tmdb.org/t/p/w500/${currentShow.poster_path}`}
+                                        size='large'
+                                    />
+                                </Grid.Column>
+                                <Grid.Column width={10}>
+                                    <Grid.Row>
+                                        <h3>Overview</h3>
+                                        {currentShow.overview}
+                                    </Grid.Row>
+                                    <Grid.Row>
+                                        <div>
+                                            {localStorage.token ?
+                                                <Button
+                                                    onClick={this.onWatchShowClick}
+                                                    content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
+                                                />
+                                                :
+                                                null
+                                            }
+                                        </div>
+                                    </Grid.Row>
+                                    <Grid.Row>
+                                        <ActorsList />
+                                    </Grid.Row>
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
 
-                    <div className='seasons-buttons-container'>
-                        {this.seasonsForCurrentShow()}
+                        <div className='seasons-buttons-container'>
+                            {this.seasonsForCurrentShow()}
 
+                        </div>
+                        <EpisodesTable />
                     </div>
-                    <EpisodesTable />
-                </div>
+                    :
+                    <Dimmer active inverted>
+                        <Loader
+                            size='huge'
+                            inverted
+                            content='Loading'
+                        />
+                    </Dimmer>
             )
-        } else {
-            return null
         }
     }
-}
 
-const mapStateToProps = state => {
-    return {
-        currentShow: state.showDetails,
-        watchList: state.watchList
+    const mapStateToProps = state => {
+        return {
+            currentShow: state.showDetails,
+            watchList: state.watchList
+        }
     }
-}
 
-export default withRouter(connect(mapStateToProps, actions)(ShowDetails));
+    export default withRouter(connect(mapStateToProps, actions)(ShowDetails));
 

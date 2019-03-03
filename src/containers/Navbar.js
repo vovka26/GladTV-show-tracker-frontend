@@ -19,7 +19,7 @@ const Navbar = (props) => {
                     />
                     <Menu.Menu position='right'> 
                         <Menu.Item 
-                            name={`Hey ${currentUser.username}`}
+                            name={`Hey ${currentUser.first_name}`}
                         />
                         <Menu.Item 
                             name='Logout'

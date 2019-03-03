@@ -32,7 +32,10 @@ const WatchListCard = props => {
                         </Button>
                     </Card.Header>
                 </Card.Content>
-                <Image src={`https://image.tmdb.org/t/p/w200/${show.image_url}`} />
+                <Image 
+                    src={`https://image.tmdb.org/t/p/original/${show.image_url}`} 
+                    size='medium'
+                />
             </Card> 
         </div>
         :

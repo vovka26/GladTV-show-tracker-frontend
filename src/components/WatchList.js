@@ -3,24 +3,35 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import WatchListCard from '../containers/WatchListCard';
 import * as actions from '../redux/actions'
-// import ShowCard from './ShowCard';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 class WatchList extends Component {
-    componentWillMount(){
-        this.props.getWatchList()
+    componentWillMount() {
+        if (!this.props.watchList) {
+            this.props.getWatchList()
+        }
     }
-    render(){
+    render() {
         const { watchList } = this.props
-        return(
+        return (
             !localStorage.getItem('token') ? <Redirect to='/login' /> :
-            <div className='ui grid centered'>
-                {watchList.map(show => (
-                    <WatchListCard
-                        show={show}
-                        key={show.api_id}
-                    />
-                ))}
-            </div>
+                watchList ?
+                    <div className='ui grid centered'>
+                        {watchList.map(show => (
+                            <WatchListCard
+                                show={show}
+                                key={show.api_id}
+                            />
+                        ))}
+                    </div>
+                    :
+                    <Dimmer active inverted>
+                        <Loader
+                            size='huge'
+                            inverted
+                            content='Loading'
+                        />
+                    </Dimmer>
         )
     }
 }

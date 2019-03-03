@@ -11,6 +11,7 @@ const EpisodesTable = (props) => {
         if (isWatched(props, episode)) {
             deleteingEpisodeFromWatchList(episode.id)
         } else {
+            
             if (!isSubscribedForShow(props, episode.show_id)) {
                 addShowToUserWatchlist(currentShow)
             }

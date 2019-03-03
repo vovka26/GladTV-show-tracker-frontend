@@ -17,9 +17,10 @@ code {
 }
 
 .movie-card {
-  margin: 3%;
+  margin: 2%;
   text-align: center;
   display: inline-block;
+  width: 20%;
 }
 
 .searchbar {
@@ -81,4 +82,5 @@ code {
 
 .ui.card.actor-card {
   width: 14%;
+  margin: 1%;
 }

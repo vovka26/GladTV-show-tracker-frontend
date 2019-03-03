@@ -11,6 +11,7 @@ import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import WatchList from '../components/WatchList';
 import Navbar from './Navbar';
+import ActorDetails from '../components/ActorDetails';
 
 class App extends PureComponent {
   componentWillMount(){
@@ -19,7 +20,6 @@ class App extends PureComponent {
       this.props.checkToken(token)
       this.props.getWatchList()
     }
-   
   }
 
   render() {
@@ -34,6 +34,7 @@ class App extends PureComponent {
           <Route path='/watchlist' component={WatchList} />
           <Route path='/search' component={ShowList} />
           <Route path='/shows/:id' component={ShowDetails} />
+          <Route path='/actors/:id' component={ActorDetails} />
         </Switch>
       </div>
     );
