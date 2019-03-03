@@ -42,7 +42,7 @@ class ShowDetails extends PureComponent {
 
     isSubscribed = () => {
         const { currentShow, watchList } = this.props
-        return watchList.some(show => show.api_id === currentShow.id)
+        return watchList.find(show => show.api_id === currentShow.id) ? true : false
     }
 
     currentShowId = () => {
@@ -78,7 +78,7 @@ class ShowDetails extends PureComponent {
                                 <Grid.Column width={6} >
 
                                     <Image
-                                        src={`https://image.tmdb.org/t/p/w500/${currentShow.poster_path}`}
+                                        src={`https://image.tmdb.org/t/p/original/${currentShow.poster_path}`}
                                         size='large'
                                     />
                                 </Grid.Column>
@@ -92,8 +92,9 @@ class ShowDetails extends PureComponent {
                                             {localStorage.token ?
                                                 <Button
                                                     onClick={this.onWatchShowClick}
-                                                    content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
-                                                />
+                                                >
+                                                {this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
+                                                </Button>
                                                 :
                                                 null
                                             }

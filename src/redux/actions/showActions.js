@@ -40,11 +40,10 @@ export const getShowDetails = showId => dispatch => {
 }
 
 export const getWatchList = () => dispatch => {
-	const token = localStorage.token
 	fetch(`${BASE_URL}/shows`, {
 		method: 'GET',
         headers: {
-			'Authentication': `Bearer ${token}`
+			'Authentication': `Bearer ${localStorage.token}`
 		}
 	})
 	.then(res => res.json())
