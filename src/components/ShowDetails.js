@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Image, Button, Grid } from 'semantic-ui-react';
 import * as actions from '../redux/actions'
 import EpisodesTable from '../containers/EpisodesTable';
+import ActorsList from '../containers/ActorsList';
 
 class ShowDetails extends PureComponent {
     componentWillMount() {
@@ -81,25 +82,32 @@ class ShowDetails extends PureComponent {
                                 />
                             </Grid.Column>
                             <Grid.Column width={10}>
-                                <h3>Overview</h3>
-                                {currentShow.overview}
-                                <div>
-                                    {localStorage.token ?
-                                        <Button
-                                            onClick={this.onWatchShowClick}
-                                            content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
-                                        />
-                                        :
-                                        null
-                                    }
-                                </div>
+                                <Grid.Row>
+                                    <h3>Overview</h3>
+                                    {currentShow.overview}
+                                </Grid.Row>
+                                <Grid.Row>
+                                    <div>
+                                        {localStorage.token ?
+                                            <Button
+                                                onClick={this.onWatchShowClick}
+                                                content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
+                                            />
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                </Grid.Row>
+                                <Grid.Row>
+                                    <ActorsList />
+                                </Grid.Row>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
 
                     <div className='seasons-buttons-container'>
                         {this.seasonsForCurrentShow()}
-                        
+
                     </div>
                     <EpisodesTable />
                 </div>
