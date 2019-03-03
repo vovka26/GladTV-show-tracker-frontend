@@ -6,41 +6,50 @@ import * as actions from '../redux/actions'
 
 
 const Navbar = (props) => {
-    const { location: { pathname }, userLogout, currentUser} = props
-    return(
+    const { location: { pathname }, userLogout, currentUser } = props
+    return (
         <Menu pointing secondary className='navbar'>
             {currentUser ? (
                 <Fragment>
-                    <Menu.Item 
+                    <Menu.Item
                         as={NavLink}
                         to='/home'
                         name="Home"
-                        active={ pathname === '/home'}
+                        active={pathname === '/home'}
                     />
-                    <Menu.Item 
+                    <Menu.Item
                         as={NavLink}
                         to='/watchlist'
                         name="Show List"
-                        active={ pathname === '/watchlist'}
+                        active={pathname === '/watchlist'}
                     />
-                    <Menu.Menu position='right'> 
-                        <Menu.Item 
+                    <Menu.Menu position='right'>
+                        <Menu.Item
                             name={`Hey ${currentUser.first_name}`}
                         />
-                        <Menu.Item 
+                        <Menu.Item
                             name='Logout'
                             onClick={userLogout}
                         />
                     </Menu.Menu>
                 </Fragment>
             ) : (
-                <Menu.Item 
-                    as={NavLink}
-                    to='/login'
-                    name="Login"
-                    active={pathname === '/login'}
-                /> )
-            }  
+                    <Fragment>
+                        <Menu.Item
+                            as={NavLink}
+                            to='/'
+                            name="Home"
+                            active={pathname === '/'}
+                        />
+                        <Menu.Item
+                            as={NavLink}
+                            to='/login'
+                            name="Login"
+                            active={pathname === '/login'}
+                        />
+                    </Fragment>
+                )
+            }
         </Menu>
     )
 }

@@ -29,13 +29,13 @@ class App extends PureComponent {
         <Navbar />
         <SearchBar /> 
         <Switch>
-          <Route path='/home' component={MainPage} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
           <Route path='/watchlist' component={WatchList} />
           <Route path='/search' component={ShowList} />
           <Route path='/shows/:id' component={ShowDetails} />
           <Route path='/actors/:id' component={ActorDetails} />
+          <Route path='/' component={MainPage} />
         </Switch>
       </div>
     );
