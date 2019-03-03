@@ -6,6 +6,7 @@ import * as actions from '../redux/actions';
 import noActorImg from '../noImageActor.png';
 import ShowCard from '../containers/ShowCard';
 import { Dimmer, Loader } from 'semantic-ui-react';
+import uuidv5 from 'uuid';
 
 class ActorDetails extends PureComponent {
 
@@ -33,7 +34,7 @@ class ActorDetails extends PureComponent {
                     {actor.tv_credits.cast.map(show => (
                         <ShowCard
                             show={show}
-                            key={show.id}
+                            key={uuidv5()}
                         />
                     ))}
                 </div>
