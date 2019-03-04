@@ -7,6 +7,7 @@ import EpisodesTable from '../containers/EpisodesTable';
 import ActorsList from '../containers/ActorsList';
 import LoadingImage from '../containers/LoadingImage';
 import noImage from '../noImage.png';
+import TrailerModal from '../containers/TrailerModal';
 
 
 class ShowDetails extends PureComponent {
@@ -69,7 +70,6 @@ class ShowDetails extends PureComponent {
         return (
             currentShow ?
                 <div className='show-details-container'>
-
                     <Grid columns={2} width={16} className='show-overview-block'>
                         <Grid.Row className='show-title'>
                             <h2>{currentShow.name}</h2>
@@ -109,6 +109,7 @@ class ShowDetails extends PureComponent {
                                             :
                                             null
                                         }
+                                        <TrailerModal />
                                     </div>
                                 </Grid.Row>
                                 <Grid.Row>
