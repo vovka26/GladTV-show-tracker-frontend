@@ -1,8 +1,7 @@
 import React from 'react';
-import { Table, Icon, Image } from 'semantic-ui-react';
+import { Table, Icon, Image, Popup } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
-import Popup from 'reactjs-popup';
 
 const EpisodesTable = (props) => {
     const { seasonDetails, addShowToUserWatchlist, currentShow, addingEpisodeToWatchlist, deleteingEpisodeFromWatchList } = props

@@ -43,7 +43,7 @@ const ShowCard = (props) => {
                 {isSubscribed(props) ? 
                 <ShowSubscribeButton 
                     show={show}
-                    className='card-button-watchlist'
+                    className='card-button-delete-show'
                     onButtonClick={deleteShow}
                     buttonContent={'Delete From Watchlist'}
                     findShowIdInWatchlist={findShowIdInWatchlist}
@@ -54,7 +54,7 @@ const ShowCard = (props) => {
                 :
                 <ShowSubscribeButton 
                     show={show}
-                    className='card-button-showlist'
+                    className='card-button-add-show'
                     onButtonClick={addShow}
                     buttonContent={'Add From Watchlist'}
                     findShowIdInWatchlist={findShowIdInWatchlist}

@@ -76,19 +76,25 @@ code {
   background-color: aqua;
 }
 
-.ui.button.card-button-watchlist {
+.ui.button.card-button-delete-show {
   width: 100%;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  z-index: 0;
 }
 
-.ui.button.card-button-watchlist:hover {
+.ui.button.card-button-delete-show:hover {
   background-color: red;
 }
 
-.ui.button.card-button-showlist {
+.ui.button.card-button-add-show {
   width: 100%;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  z-index: 0;
 }
 
-.ui.button.card-button-showlist:hover {
+.ui.button.card-button-add-show:hover {
   background-color: greenyellow;
 }
 
