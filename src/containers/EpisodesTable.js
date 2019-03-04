@@ -26,43 +26,52 @@ const EpisodesTable = (props) => {
         return props.watchList.find(show => show.api_id === showId) ? true : false
     }
 
+    const tableRows = (episode) => {
+        return <Table.Row
+            className='episodes-table-row'
+        >
+            <Table.Cell
+                content={episode.episode_number}
+            />
+            <Table.Cell
+                className='episodes-table-cell-name'
+                content={episode.name}
+            />
+            <Table.Cell
+                content={episode.air_date}
+            />
+            {localStorage.token ?
+                <Table.Cell
+                    content={
+                        <Icon
+                            color={isWatched(props, episode) ? 'green' : 'grey'}
+                            onClick={() => onClick(episode, props)} name='eye'
+                        />
+                    }
+                />
+                :
+                null
+            }
+        </Table.Row>
+    }
+
     const tableEpisodes = () => {
         return seasonDetails.episodes.map(episode => (
             <Popup
                 key={episode.id}
-                trigger={
-                    <Table.Row
-                        className='episodes-table-row'
-                    >
-                        <Table.Cell
-                            content={episode.episode_number}
-                        />
-                        <Table.Cell
-                            className='episodes-table-cell-name'
-                            content={episode.name}
-                        />
-                        <Table.Cell
-                            content={episode.air_date}
-                        />
-                        {localStorage.token ?
-                            <Table.Cell
-                                content={
-                                    <Icon
-                                        color={isWatched(props, episode) ? 'green' : 'grey'}
-                                        onClick={() => onClick(episode, props)} name='eye'
-                                    />
-                                }
-                            />
-                            :
-                            null
-                        }
-                    </Table.Row>
-                }
                 position="top center"
                 on="hover"
+                trigger={
+                    tableRows(episode)
+                }
             >
                 {episode.overview ? episode.overview : episode.name}
-                <Image src={episode.still_path ? `https://image.tmdb.org/t/p/original/${episode.still_path}` : null} />
+
+                <Image 
+                    size='large' 
+                    src={episode.still_path ? 
+                    `https://image.tmdb.org/t/p/original/${episode.still_path}` : null} 
+                />
             </Popup>
         ))
     }

@@ -49,6 +49,33 @@ code {
 .show-details-container {
   max-width: 75%;
   margin: 2% auto;
+  z-index: 5;
+  color: white;
+}
+
+.show-details-background-picture{
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background-size: 'cover';
+  background-position: 'center'; 
+  background-repeat: 'no-repeat';
+}
+
+/* .show-details-background-picture {
+ 
+} */
+
+
+.show-details-background-color{
+  width: 100%;
+  background-color: #3a324ce6;
+  z-index: 2;
+}
+
+.seasons-episodes-container{
+  max-width: 75%;
+  margin: 2% auto;
 }
 
 .episodes-table {

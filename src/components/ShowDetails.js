@@ -67,9 +67,22 @@ class ShowDetails extends PureComponent {
     render() {
         const { currentShow } = this.props
         const imgSrc = currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
+        const backgroundImg = `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}`
+
         return (
             currentShow ?
-                <div className='show-details-container'>
+                <div className='show-main-container'>
+                    <div className='show-details-background-picture'
+                        style={{
+                            background: `url(${ backgroundImg })`, 
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center center',
+                            backgroundRepeat: 'no-repeat'
+                        }}
+                    >
+                    
+                    <div className='show-details-background-color'>
+                    <div className='show-details-container'>
                     <Grid columns={2} width={16} className='show-overview-block'>
                         <Grid.Row className='show-title'>
                             <h2>{currentShow.name}</h2>
@@ -118,12 +131,16 @@ class ShowDetails extends PureComponent {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-
+                    </div>
+                    </div>
+                    </div>
+                    <div className='seasons-episodes-container'>
                     <div className='seasons-buttons-container'>
                         {this.seasonsForCurrentShow()}
 
                     </div>
                     <EpisodesTable />
+                    </div>
                 </div>
                 :
                 <LoadingImage />
