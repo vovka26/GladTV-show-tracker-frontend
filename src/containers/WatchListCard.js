@@ -21,16 +21,15 @@ const WatchListCard = props => {
         show ? 
         <div className='movie-card'>
             <Card onClick={onCardClick}>
-                <Card.Content>
-                    <Card.Header>
-                        {show.title}
+                <Card.Content className='movie-card-header'>
                         <Button 
-                            circular
+                            className='card-button'
+                            animated='fade'
                             onClick={deleteButton}
                         >
-                            x 
+                            <Button.Content visible>{show.title}</Button.Content>
+                            <Button.Content hidden>Delete From Watchlist</Button.Content>
                         </Button>
-                    </Card.Header>
                 </Card.Content>
                 <Image 
                     src={`https://image.tmdb.org/t/p/original/${show.image_url}`} 

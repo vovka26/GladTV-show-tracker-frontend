@@ -1,5 +1,5 @@
 body {
-  margin: 0.3%;
+  /* margin: 0.3%; */
   /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif; */
@@ -17,10 +17,10 @@ code {
 }
 
 .movie-card {
-  margin: 2%;
+  margin: 1.5%;
   text-align: center;
   display: inline-block;
-  width: 18%;
+  width: 22%;
 }
 
 .searchbar {
@@ -34,9 +34,9 @@ code {
   border-color: transparent;
 }
 
-.menu.navbar {
-  margin-bottom: 0;
-  background-color: black; 
+.ui.menu.navbar {
+  margin-bottom: 0%;
+  background-color: #3effea5e; 
 }
 
 .ui.segment.login-signup {
@@ -72,6 +72,22 @@ code {
   margin: 0.5%;
 }
 
+.ui.season-button:hover {
+  background-color: aqua;
+}
+
+.ui.button.card-button {
+  width: 100%;
+}
+
+.ui.button.card-button:hover {
+  background-color: red;
+}
+
+a.ui.card > .movie-card-header {
+  padding: 0px;
+}
+
 .show-title {
   margin-left: 1.3%;
 }
@@ -88,4 +104,13 @@ code {
 .main-carousel {
   max-width: 70%;
   margin: auto;
+}
+
+.carousel.carousel-slider {
+  border-radius: 1%;
+}
+
+.main-page-header {
+  text-align: center;
+  margin: 1%;
 }

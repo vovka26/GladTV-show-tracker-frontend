@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../redux/actions';
@@ -23,7 +23,8 @@ class MainPage extends PureComponent {
     render() {
         return (
             this.props.shows ? 
-            <Fragment>
+            <div>
+                <h2 className='main-page-header'>Popular Shows</h2>
                 <Carousel
                     infiniteLoop useKeyboardArrows autoPlay showArrows
                     className='main-carousel'
@@ -46,7 +47,7 @@ class MainPage extends PureComponent {
                     )}
 
                 </Carousel>
-            </Fragment>
+            </div>
             :
             <LoadingImage />
         )
