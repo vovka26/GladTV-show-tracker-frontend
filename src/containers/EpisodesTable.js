@@ -1,8 +1,8 @@
 import React from 'react';
-import { Table, Icon } from 'semantic-ui-react';
+import { Table, Icon, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import * as actions from '../redux/actions'
-
+import * as actions from '../redux/actions';
+import Popup from 'reactjs-popup';
 
 const EpisodesTable = (props) => {
     const { seasonDetails, addShowToUserWatchlist, currentShow, addingEpisodeToWatchlist, deleteingEpisodeFromWatchList } = props
@@ -29,7 +29,8 @@ const EpisodesTable = (props) => {
 
     const tableEpisodes = () => {
         return seasonDetails.episodes.map(episode => (
-            <Table.Row 
+            <Popup
+            trigger={<Table.Row 
                 key={episode.id} 
                 className='episodes-table-row'
             >
@@ -55,7 +56,13 @@ const EpisodesTable = (props) => {
                     :
                     null
                 }
-            </Table.Row>
+            </Table.Row>}
+            position="top center"
+            on="hover"
+          >
+            <div>{episode.overview ? episode.overview : episode.name}</div>
+            <Image src={episode.still_path ? `https://image.tmdb.org/t/p/original/${episode.still_path}` : null}/>
+          </Popup>
         ))
     }
     
@@ -111,4 +118,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, actions)(EpisodesTable)
+export default connect(mapStateToProps, actions)(EpisodesTable);
