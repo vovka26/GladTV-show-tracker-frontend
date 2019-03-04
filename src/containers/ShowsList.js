@@ -27,7 +27,7 @@ class ShowList extends PureComponent {
                 <div className='ui grid centered'>
                     {shows.map(show =>
                         <ShowCard
-                            key={show.id}
+                            key={show.id}    
                             show={show}
                         />
                     )}

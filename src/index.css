@@ -76,12 +76,20 @@ code {
   background-color: aqua;
 }
 
-.ui.button.card-button {
+.ui.button.card-button-watchlist {
   width: 100%;
 }
 
-.ui.button.card-button:hover {
+.ui.button.card-button-watchlist:hover {
   background-color: red;
+}
+
+.ui.button.card-button-showlist {
+  width: 100%;
+}
+
+.ui.button.card-button-showlist:hover {
+  background-color: greenyellow;
 }
 
 a.ui.card > .movie-card-header {

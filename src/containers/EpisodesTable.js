@@ -11,7 +11,7 @@ const EpisodesTable = (props) => {
         if (isWatched(props, episode)) {
             deleteingEpisodeFromWatchList(episode.id)
         } else {
-            
+
             if (!isSubscribedForShow(props, episode.show_id)) {
                 addShowToUserWatchlist(currentShow)
             }
@@ -30,71 +30,73 @@ const EpisodesTable = (props) => {
     const tableEpisodes = () => {
         return seasonDetails.episodes.map(episode => (
             <Popup
-            trigger={<Table.Row 
-                key={episode.id} 
-                className='episodes-table-row'
-            >
-                <Table.Cell 
-                    content={episode.episode_number} 
-                />
-                <Table.Cell 
-                    className='episodes-table-cell-name' 
-                    content={episode.name} 
-                />
-                <Table.Cell 
-                    content={episode.air_date} 
-                />
-                {localStorage.token ?
-                    <Table.Cell
-                        content={
-                            <Icon 
-                                color={isWatched(props, episode) ? 'green' : 'grey'} 
-                                onClick={() => onClick(episode, props)} name='eye' 
+                key={episode.id}
+                trigger={
+                    <Table.Row
+                        className='episodes-table-row'
+                    >
+                        <Table.Cell
+                            content={episode.episode_number}
+                        />
+                        <Table.Cell
+                            className='episodes-table-cell-name'
+                            content={episode.name}
+                        />
+                        <Table.Cell
+                            content={episode.air_date}
+                        />
+                        {localStorage.token ?
+                            <Table.Cell
+                                content={
+                                    <Icon
+                                        color={isWatched(props, episode) ? 'green' : 'grey'}
+                                        onClick={() => onClick(episode, props)} name='eye'
+                                    />
+                                }
                             />
-                        } 
-                    />
-                    :
-                    null
+                            :
+                            null
+                        }
+                    </Table.Row>
                 }
-            </Table.Row>}
-            position="top center"
-            on="hover"
-          >
-            <div>{episode.overview ? episode.overview : episode.name}</div>
-            <Image src={episode.still_path ? `https://image.tmdb.org/t/p/original/${episode.still_path}` : null}/>
-          </Popup>
+                position="top center"
+                on="hover"
+            >
+                {episode.overview ? episode.overview : episode.name}
+                <Image src={episode.still_path ? `https://image.tmdb.org/t/p/original/${episode.still_path}` : null} />
+            </Popup>
         ))
     }
-    
+
     return (
         <div className='episodes-table'>
             {!seasonDetails ? null :
-                <Table 
-                    className='ui centered' 
+                <Table
+                    className='ui centered'
                     selectable
                 >
                     <Table.Header>
                         <Table.Row className='episodes-table-row'>
 
-                            <Table.HeaderCell 
-                                className='episodes-table-cell' 
-                                content='Episode' 
+                            <Table.HeaderCell
+                                className='episodes-table-cell'
+                                content='Episode'
                             />
 
-                            <Table.HeaderCell 
-                                className='episodes-table-cell' 
-                                content='Name' 
+                            <Table.HeaderCell
+                                className='episodes-table-cell'
+                                content='Name'
                             />
 
-                            <Table.HeaderCell 
-                                className='episodes-table-cell' 
-                                content='Air date' 
+                            <Table.HeaderCell
+                                className='episodes-table-cell'
+                                content='Air date'
                             />
 
                             {localStorage.token ?
-                                <Table.HeaderCell 
-                                    className='episodes-table-cell' 
-                                    content='Watched' 
+                                <Table.HeaderCell
+                                    className='episodes-table-cell'
+                                    content='Watched'
                                 />
                                 : null}
                         </Table.Row>

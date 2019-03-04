@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../redux/actions';
 import noImage from '../noImage.png'
+import ShowSubscribeButton from './ShowSubscribeButton';
 
 const ShowCard = (props) => {
     const { show, history } = props
@@ -11,18 +12,72 @@ const ShowCard = (props) => {
     const onCardClick = () => {
         history.push(`/shows/${show.id}`)
     }
+
+    const findShowIdInWatchlist = (watchList, show) => {
+        debugger
+        return watchList.find(showObj => showObj.api_id === show.id).id
+    }
+
+    const addShow = (e, props) => {
+        e.stopPropagation()
+        props.addShowToUserWatchlist(props.show)
+    }
+
+    const deleteShow = (e, props) => {
+        e.stopPropagation()
+        const id = props.findShowIdInWatchlist(props.watchList, props.show)
+        props.deleteShowFromWatchlist(id)
+    }
+
+    const isSubscribed = (props) => {
+        const { show, watchList } = props
+        return watchList.find(showObj => showObj.api_id === show.id) ? true : false
+    }
     
     const imageSrc = show.poster_path ? `https://image.tmdb.org/t/p/w200/${show.poster_path}` : noImage
+
     return (
         <div className='movie-card'>
         <Card onClick={onCardClick}>
-            <Card.Content>
-                <Card.Header>{show.name}</Card.Header>
+            <Card.Content className='movie-card-header'>
+                {isSubscribed(props) ? 
+                <ShowSubscribeButton 
+                    show={show}
+                    className='card-button-watchlist'
+                    onButtonClick={deleteShow}
+                    buttonContent={'Delete From Watchlist'}
+                    findShowIdInWatchlist={findShowIdInWatchlist}
+                    watchList={props.watchList}
+                    deleteShowFromWatchlist={props.deleteShowFromWatchlist}
+                    addShowToUserWatchlist={props.addShowToUserWatchlist}
+                />
+                :
+                <ShowSubscribeButton 
+                    show={show}
+                    className='card-button-showlist'
+                    onButtonClick={addShow}
+                    buttonContent={'Add From Watchlist'}
+                    findShowIdInWatchlist={findShowIdInWatchlist}
+                    watchList={props.watchList}
+                    deleteShowFromWatchlist={props.deleteShowFromWatchlist}
+                    addShowToUserWatchlist={props.addShowToUserWatchlist}
+                />
+
+                }
             </Card.Content>
-            <Image src={imageSrc} />
+            <Image 
+                src={imageSrc} 
+                size='medium'
+            />
         </Card> 
         </div>
     )
 }
 
-export default withRouter(connect(null, actions)(ShowCard));
+const mapStateToProps = state => {
+    return {
+        watchList: state.watchList
+    }
+}
+
+export default withRouter(connect(mapStateToProps, actions)(ShowCard));

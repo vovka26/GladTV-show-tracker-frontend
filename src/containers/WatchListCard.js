@@ -23,7 +23,7 @@ const WatchListCard = props => {
             <Card onClick={onCardClick}>
                 <Card.Content className='movie-card-header'>
                         <Button 
-                            className='card-button'
+                            className='card-button-watchlist'
                             animated='fade'
                             onClick={deleteButton}
                         >
