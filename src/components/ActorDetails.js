@@ -10,7 +10,7 @@ import uuidv5 from 'uuid';
 
 class ActorDetails extends PureComponent {
 
-    componentWillMount() {
+    componentDidMount() {
         const actorId = this.props.match.params.id
         this.props.gettingActorDetails(actorId)
     }

@@ -7,7 +7,7 @@ import { Carousel } from 'react-responsive-carousel';
 import LoadingImage from './LoadingImage';
 
 class MainPage extends PureComponent {
-    componentWillMount() {
+    componentDidMount() {
         this.props.getPopularShows();
     }
 

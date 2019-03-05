@@ -6,7 +6,7 @@ import ShowCard from './ShowCard';
 import LoadingImage from './LoadingImage';
 
 class ShowList extends PureComponent {
-    componentWillMount() {
+    componentDidMount() {
         const { location, setSearchTerm, searchTerm, getShows } = this.props
         const query = location.search.split('?query=')[1]
         if (!searchTerm && query) {

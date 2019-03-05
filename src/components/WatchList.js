@@ -5,7 +5,7 @@ import WatchListCard from '../containers/WatchListCard';
 import * as actions from '../redux/actions';
 import LoadingImage from '../containers/LoadingImage';
 class WatchList extends Component {
-    componentWillMount() {
+    componentDidMount() {
         if (!this.props.watchList) {
             this.props.getWatchList()
         }

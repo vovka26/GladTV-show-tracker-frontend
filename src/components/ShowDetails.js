@@ -12,7 +12,7 @@ import TrailerModal from '../containers/TrailerModal';
 
 class ShowDetails extends PureComponent {
 
-    componentWillMount() {
+    componentDidMount() {
 
         this.props.clearSearchTerm()
         const showId = this.props.match.params.id

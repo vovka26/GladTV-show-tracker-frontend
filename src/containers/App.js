@@ -16,7 +16,7 @@ import MainPage from './MainPage';
 import SimilarShows from './SimilarShows';
 
 class App extends PureComponent {
-  componentWillMount(){
+  componentDidMount(){
     let token = localStorage.getItem('token')
     if (token) {
       this.props.checkToken(token)
