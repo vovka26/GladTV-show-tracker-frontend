@@ -103,6 +103,13 @@ a.ui.card > img.card-image {
   background-color: #00ffff6b;
 }
 
+.ui.button.movie-card-button-header {
+  width: 100%;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  z-index: 0;
+}
+
 .ui.button.card-button-delete-show {
   width: 100%;
   border-bottom-left-radius: 0%;

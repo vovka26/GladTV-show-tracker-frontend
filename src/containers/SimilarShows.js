@@ -19,6 +19,7 @@ class SimilarShows extends PureComponent {
 
     render(){
         const { similarShows } = this.props
+        
         return(
             similarShows.results ? 
             similarShows.results.map(show => 
@@ -35,8 +36,7 @@ class SimilarShows extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        similarShows: state.similarShows,
-        watchList: state.watchList
+        similarShows: state.similarShows
     }
 }
 

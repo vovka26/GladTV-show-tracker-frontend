@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Card } from 'semantic-ui-react';
+import { Image, Card, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../redux/actions';
@@ -39,6 +39,7 @@ const ShowCard = (props) => {
     return (
         <div className='movie-card'>
         <Card onClick={onCardClick}>
+            {localStorage.token ? 
             <Card.Content className='movie-card-header'>
                 {isSubscribed(props) ? 
                 <ShowSubscribeButton 
@@ -65,6 +66,14 @@ const ShowCard = (props) => {
 
                 }
             </Card.Content>
+            :
+            <Card.Content className='movie-card-header'>
+                <Button 
+                    content={show.name}
+                    className='movie-card-button-header'
+                />
+            </Card.Content>
+            }
             <Image 
                 className='card-image'
                 src={imageSrc} 

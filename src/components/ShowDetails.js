@@ -64,12 +64,12 @@ class ShowDetails extends PureComponent {
     }
 
     render() {
-        const { currentShow, watchList } = this.props
+        const { currentShow } = this.props
         const imgSrc = currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
-        const backgroundImg = `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}`
+        const backgroundImg = currentShow.backdrop_path ? `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}` : null
 
         return (
-            currentShow && watchList ?
+            currentShow ?
                 <div className='show-main-container'>
                     <div className='show-details-background-picture'
                         style={{
@@ -98,7 +98,7 @@ class ShowDetails extends PureComponent {
                                 <Grid.Row>
                                     <h3>Overview</h3>
                                     {currentShow.overview}
-                                    {currentShow.next_episode_to_air ?
+                                    {/* {currentShow.next_episode_to_air && currentShow.last_episode_to_air ?
                                         <h4>
                                             Next episode: {
                                                 currentShow.next_episode_to_air.air_date
@@ -108,7 +108,7 @@ class ShowDetails extends PureComponent {
                                                 currentShow.last_episode_to_air.air_date
                                             }
                                         </h4>
-                                    }
+                                    } */}
                                 </Grid.Row>
                                 <Grid.Row>
                                     <div>
