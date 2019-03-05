@@ -3,15 +3,8 @@ import { FETCH_SHOWS, FETCH_SHOW_DETAILS, SET_SEARCH_TERM, CLEAR_SEARCH_TERM, FE
 
 const shows = (state='', action) => {
     switch(action.type){
-
         case FETCH_SHOWS: 
             return action.payload.results;
-
-        case FETCH_POPULAR_SHOWS:
-            return action.payload.results;
-        
-        case FETCH_SIMILAR_SHOWS:
-            return action.payload
 
         case USER_LOGOUT: 
             return '';
@@ -19,6 +12,28 @@ const shows = (state='', action) => {
         case RESET_SHOWS:
             return '';
 
+        default:
+            return state;
+    }
+}
+
+const popularShows = (state='', action) => {
+    switch(action.type){
+        case FETCH_POPULAR_SHOWS:
+            return action.payload.results;
+        case RESET_SHOWS:
+            return '';
+        default:
+            return state;
+    }
+}
+
+const similarShows = (state='', action) => {
+    switch(action.type){
+        case FETCH_SIMILAR_SHOWS:
+            return action.payload;
+        case RESET_SHOWS:
+            return '';
         default:
             return state;
     }
@@ -155,6 +170,8 @@ export default combineReducers({
     currentUser,
     watchList,
     episodes,
-    actorDetails
+    actorDetails,
+    popularShows,
+    similarShows
 })
 

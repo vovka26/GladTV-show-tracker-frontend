@@ -82,6 +82,7 @@ export const createUser = formData => dispatch => {
 
 export const addShowToUserWatchlist = show => dispatch => {
     const { name, vote_average, genres, id, poster_path  } = show
+    debugger
 	fetch(`http://localhost:3000/api/v1/shows`, {
 		method: 'POST',
 		headers: {

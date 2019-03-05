@@ -14,12 +14,12 @@ const ShowCard = (props) => {
     }
 
     const findShowIdInWatchlist = (watchList, show) => {
-        debugger
         return watchList.find(showObj => showObj.api_id === show.id).id
     }
 
     const addShow = (e, props) => {
         e.stopPropagation()
+        debugger
         props.addShowToUserWatchlist(props.show)
     }
 

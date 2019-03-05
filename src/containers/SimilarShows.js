@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../redux/actions';
 import LoadingImage from './LoadingImage';
+import ShowCard from './ShowCard';
 
 class SimilarShows extends PureComponent {
     componentDidMount(){
@@ -12,21 +13,30 @@ class SimilarShows extends PureComponent {
         this.props.getSimilarShows(showId, pageNum)
     }
 
+    componentWillUnmount(){
+        this.props.resetShows()
+    }
+
     render(){
+        const { similarShows } = this.props
         return(
-            this.props.similarShows ? 
-            <div>
-                
-            </div>
+            similarShows.results ? 
+            similarShows.results.map(show => 
+                <ShowCard 
+                    show={show}
+                    key={show.id}
+                />
+            )
             :
             <LoadingImage />
         )
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
-        similarShows: state.shows
+        similarShows: state.similarShows,
+        watchList: state.watchList
     }
 }
 

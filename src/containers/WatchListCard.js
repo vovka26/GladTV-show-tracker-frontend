@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../redux/actions'
 
 const WatchListCard = props => {
+    
     const { show, deleteShowFromWatchlist, getShowDetails, clearSearchTerm, history } = props
     const onCardClick = () => {
         getShowDetails(show.api_id)

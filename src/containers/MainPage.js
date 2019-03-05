@@ -19,31 +19,34 @@ class MainPage extends PureComponent {
         this.props.history.push(`/shows/${id}`)
     }
 
+    filteredShowsWithPoster = () => {
+        return this.props.popularShows.filter(show => show.backdrop_path)
+    }
+
     render() {
         return (
-            this.props.shows ?
+            this.props.popularShows ?
+
                 <div className='carousel-container'>
                     <h2 className='main-page-header'>Popular Shows</h2>
                     <Carousel
                         infiniteLoop useKeyboardArrows autoPlay showArrows
                         className='main-carousel'
                     >
-                        {this.props.shows.filter(show => show.backdrop_path)
-                            .map(show => (
-                                    <div
-                                        key={show.id}
-                                        onClick={(e) => this.onBannerClick(e, show)}
-                                    >
-                                        <img
-                                            src={`https://image.tmdb.org/t/p/original/${show.backdrop_path}`}
-                                            alt='hello'
-                                        />
-                                        <p className="legend">
-                                            {show.name}
-                                        </p>
-                                    </div>
-                            ))}
-
+                        {this.filteredShowsWithPoster().map(showObj => (
+                            <div
+                                key={showObj.id}
+                                onClick={(e) => this.onBannerClick(e, showObj)}
+                            >
+                                <img
+                                    src={`https://image.tmdb.org/t/p/original/${showObj.backdrop_path}`}
+                                    alt='hello'
+                                />
+                                <p className="legend">
+                                    {showObj.name}
+                                </p>
+                            </div>
+                        ))}
                     </Carousel>
                 </div>
                 :
@@ -54,7 +57,7 @@ class MainPage extends PureComponent {
 
 const mapStateToProps = state => {
     return {
-        shows: state.shows
+        popularShows: state.popularShows
     }
 }
 

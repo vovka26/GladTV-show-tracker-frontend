@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import WatchListCard from '../containers/WatchListCard';
 import * as actions from '../redux/actions';
 import LoadingImage from '../containers/LoadingImage';
+
 class WatchList extends Component {
     componentDidMount() {
         if (!this.props.watchList) {
@@ -19,7 +20,7 @@ class WatchList extends Component {
                         {watchList.map(show => (
                             <WatchListCard
                                 show={show}
-                                key={show.api_id}
+                                key={show.id}
                             />
                         ))}
                     </div>
