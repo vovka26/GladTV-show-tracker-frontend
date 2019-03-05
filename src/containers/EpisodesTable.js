@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
 
 const EpisodesTable = (props) => {
-    const { seasonDetails, addShowToUserWatchlist, currentShow, addingEpisodeToWatchlist, deleteingEpisodeFromWatchList } = props
+    const { seasonDetails, currentShow } = props
 
     const onClick = (episode, props) => {
+        const { addShowToUserWatchlist, deleteingEpisodeFromWatchList, addingEpisodeToWatchlist} = props
         if (isWatched(props, episode)) {
             deleteingEpisodeFromWatchList(episode.id)
         } else {
-
+            debugger
             if (!isSubscribedForShow(props, episode.show_id)) {
                 addShowToUserWatchlist(currentShow)
             }
@@ -19,11 +20,11 @@ const EpisodesTable = (props) => {
     }
 
     const isWatched = (props, episode) => {
-        return props.episodes.find(ep => ep.api_id === episode.id) ? true : false
+        return props.episodes && props.episodes.find(ep => ep.api_id === episode.id) ? true : false
     }
 
     const isSubscribedForShow = (props, showId) => {
-        return props.watchList.find(show => show.api_id === showId) ? true : false
+        return props.watchList.some(obj => obj.api_id === showId)
     }
 
     const tableRows = (episode) => {

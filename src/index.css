@@ -23,10 +23,15 @@ code {
   width: 22%;
 }
 
+a.ui.card > img.card-image {
+  min-height: 31em;
+}
+
 .searchbar {
   position: sticky;
   top: 0;
   z-index: 10;
+  border-radius: 0;
 }
 
 .ui.input input {
@@ -48,7 +53,7 @@ code {
 
 .show-details-container {
   max-width: 75%;
-  margin: 2% auto;
+  margin: auto;
   z-index: 5;
   color: white;
 }
@@ -61,11 +66,6 @@ code {
   background-position: 'center'; 
   background-repeat: 'no-repeat';
 }
-
-/* .show-details-background-picture {
- 
-} */
-
 
 .show-details-background-color{
   width: 100%;
@@ -149,6 +149,12 @@ a.ui.card > .movie-card-header {
 
 .carousel.carousel-slider {
   border-radius: 1%;
+}
+
+.carousel-container {
+  max-width: 90%;
+  margin: auto;
+  /* max-height: 70%; */
 }
 
 .main-page-header {

@@ -81,7 +81,7 @@ export const createUser = formData => dispatch => {
 }
 
 export const addShowToUserWatchlist = show => dispatch => {
-    const { name, vote_average, genres='N/A', id, poster_path  } = show
+    const { name, vote_average, genres, id, poster_path  } = show
 	fetch(`http://localhost:3000/api/v1/shows`, {
 		method: 'POST',
 		headers: {
@@ -92,7 +92,7 @@ export const addShowToUserWatchlist = show => dispatch => {
 		body: JSON.stringify({
             title: name,
             rating: vote_average, 
-            genre: genres[0].name,
+            genre: genres.length > 0 ? genres[0].name : 'N/A',
             api_id: id,
             episodes: [],
             image_url: poster_path

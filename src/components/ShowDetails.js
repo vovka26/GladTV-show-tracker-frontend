@@ -41,8 +41,7 @@ class ShowDetails extends PureComponent {
     }
 
     isSubscribed = () => {
-        const { currentShow, watchList } = this.props
-        return watchList.find(show => show.api_id === currentShow.id) ? true : false
+        return this.props.watchList.find(show => show.api_id === this.props.currentShow.id) ? true : false
     }
 
     currentShowId = () => {
@@ -65,12 +64,12 @@ class ShowDetails extends PureComponent {
     }
 
     render() {
-        const { currentShow } = this.props
+        const { currentShow, watchList } = this.props
         const imgSrc = currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
         const backgroundImg = `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}`
 
         return (
-            currentShow ?
+            currentShow && watchList ?
                 <div className='show-main-container'>
                     <div className='show-details-background-picture'
                         style={{
@@ -123,6 +122,7 @@ class ShowDetails extends PureComponent {
                                             null
                                         }
                                         <TrailerModal />
+                                        
                                     </div>
                                 </Grid.Row>
                                 <Grid.Row>

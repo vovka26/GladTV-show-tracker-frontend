@@ -66,6 +66,7 @@ const ShowCard = (props) => {
                 }
             </Card.Content>
             <Image 
+                className='card-image'
                 src={imageSrc} 
                 size='medium'
             />

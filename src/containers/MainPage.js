@@ -22,7 +22,7 @@ class MainPage extends PureComponent {
     render() {
         return (
             this.props.shows ?
-                <div>
+                <div className='carousel-container'>
                     <h2 className='main-page-header'>Popular Shows</h2>
                     <Carousel
                         infiniteLoop useKeyboardArrows autoPlay showArrows

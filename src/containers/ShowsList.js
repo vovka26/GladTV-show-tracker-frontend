@@ -16,8 +16,8 @@ class ShowList extends PureComponent {
     }
 
     componentWillUnmount() {
-        this.props.resetShows()
         this.props.clearSearchTerm()
+        this.props.resetShows()
     }
 
     render() {

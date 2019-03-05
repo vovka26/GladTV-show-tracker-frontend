@@ -3,6 +3,7 @@ export const FETCH_SHOWS = 'FETCH_SHOWS';
 export const FETCH_SHOW_DETAILS = 'FETCH_SHOW_DETAILS';
 export const GET_WATCHLIST = 'GET_WATCHLIST';
 export const FETCH_POPULAR_SHOWS = 'FETCH_POPULAR_SHOWS';
+export const FETCH_SIMILAR_SHOWS = 'FETCH_SIMILAR_SHOWS';
 export const RESET_SHOWS = 'RESET_SHOWS';
 
 //search actions
