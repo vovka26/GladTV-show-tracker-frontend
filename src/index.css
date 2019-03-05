@@ -100,7 +100,7 @@ code {
 }
 
 .ui.season-button:hover {
-  background-color: aqua;
+  background-color: #00ffff6b;
 }
 
 .ui.button.card-button-delete-show {

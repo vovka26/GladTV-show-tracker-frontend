@@ -45,7 +45,7 @@ const ShowCard = (props) => {
                     show={show}
                     className='card-button-delete-show'
                     onButtonClick={deleteShow}
-                    buttonContent={'Delete From Watchlist'}
+                    buttonContent={'Delete from Watchlist'}
                     findShowIdInWatchlist={findShowIdInWatchlist}
                     watchList={props.watchList}
                     deleteShowFromWatchlist={props.deleteShowFromWatchlist}
@@ -56,7 +56,7 @@ const ShowCard = (props) => {
                     show={show}
                     className='card-button-add-show'
                     onButtonClick={addShow}
-                    buttonContent={'Add From Watchlist'}
+                    buttonContent={'Add to Watchlist'}
                     findShowIdInWatchlist={findShowIdInWatchlist}
                     watchList={props.watchList}
                     deleteShowFromWatchlist={props.deleteShowFromWatchlist}
