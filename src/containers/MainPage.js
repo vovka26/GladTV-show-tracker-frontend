@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../redux/actions';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import noImage from '../noImage.png'
 import LoadingImage from './LoadingImage';
 
 class MainPage extends PureComponent {
@@ -16,40 +15,39 @@ class MainPage extends PureComponent {
         this.props.resetShows();
     }
 
-    onBannerClick = (e, {id}) => {
+    onBannerClick = (e, { id }) => {
         this.props.history.push(`/shows/${id}`)
     }
 
     render() {
         return (
-            this.props.shows ? 
-            <div>
-                <h2 className='main-page-header'>Popular Shows</h2>
-                <Carousel
-                    infiniteLoop useKeyboardArrows autoPlay showArrows
-                    className='main-carousel'
-                >
-                    {this.props.shows.map(show => 
-                        (
-                            <div 
-                                key={show.id}
-                                onClick={(e) => this.onBannerClick(e, show)}
-                            >
-                                <img
-                                    src={show.poster_path ? `https://image.tmdb.org/t/p/original/${show.backdrop_path}` : noImage}
-                                    alt='hello'
-                                />
-                                <p className="legend">
-                                    {show.name}
-                                </p>
-                            </div>
-                        )
-                    )}
+            this.props.shows ?
+                <div>
+                    <h2 className='main-page-header'>Popular Shows</h2>
+                    <Carousel
+                        infiniteLoop useKeyboardArrows autoPlay showArrows
+                        className='main-carousel'
+                    >
+                        {this.props.shows.filter(show => show.backdrop_path)
+                            .map(show => (
+                                    <div
+                                        key={show.id}
+                                        onClick={(e) => this.onBannerClick(e, show)}
+                                    >
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/original/${show.backdrop_path}`}
+                                            alt='hello'
+                                        />
+                                        <p className="legend">
+                                            {show.name}
+                                        </p>
+                                    </div>
+                            ))}
 
-                </Carousel>
-            </div>
-            :
-            <LoadingImage />
+                    </Carousel>
+                </div>
+                :
+                <LoadingImage />
         )
     }
 }
