@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { Image, Button, Grid } from 'semantic-ui-react';
 import * as actions from '../redux/actions'
 import EpisodesTable from '../containers/EpisodesTable';
@@ -122,7 +122,9 @@ class ShowDetails extends PureComponent {
                                             null
                                         }
                                         <TrailerModal />
-                                        
+                                        <Link to={`/shows/similar/${currentShow.id}`}> 
+                                            Similar Shows
+                                        </Link>
                                     </div>
                                 </Grid.Row>
                                 <Grid.Row>
