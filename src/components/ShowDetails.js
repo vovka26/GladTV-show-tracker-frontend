@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { Image, Button, Grid } from 'semantic-ui-react';
+import { Image, Button, Grid, Progress } from 'semantic-ui-react';
 import * as actions from '../redux/actions'
 import EpisodesTable from '../containers/EpisodesTable';
 import ActorsList from '../containers/ActorsList';
@@ -64,7 +64,7 @@ class ShowDetails extends PureComponent {
     }
 
     render() {
-        const { currentShow } = this.props
+        const { currentShow, episodes } = this.props
         const imgSrc = currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
         const backgroundImg = currentShow.backdrop_path ? `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}` : null
 
@@ -73,75 +73,84 @@ class ShowDetails extends PureComponent {
                 <div className='show-main-container'>
                     <div className='show-details-background-picture'
                         style={{
-                            background: `url(${ backgroundImg })`, 
+                            background: `url(${backgroundImg})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center center',
                             backgroundRepeat: 'no-repeat'
                         }}
                     >
-                    
-                    <div className='show-details-background-color'>
-                    <div className='show-details-container'>
-                    <Grid columns={2} width={16} className='show-overview-block'>
-                        <Grid.Row className='show-title'>
-                            <h2>{currentShow.name}</h2>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column width={6} >
 
-                                <Image
-                                    src={imgSrc}
-                                    size='large'
-                                />
-                            </Grid.Column>
-                            <Grid.Column width={10}>
-                                <Grid.Row>
-                                    <h3>Overview</h3>
-                                    {currentShow.overview}
-                                    {/* {currentShow.next_episode_to_air && currentShow.last_episode_to_air ?
-                                        <h4>
-                                            Next episode: {
-                                                currentShow.next_episode_to_air.air_date
-                                            }</h4> :
-                                        <h4>
-                                            Last episode: {
-                                                currentShow.last_episode_to_air.air_date
-                                            }
-                                        </h4>
-                                    } */}
-                                </Grid.Row>
-                                <Grid.Row>
-                                    <div>
-                                        {localStorage.token ?
-                                            <Button
-                                                onClick={this.onWatchShowClick}
-                                            >
-                                                {this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
-                                            </Button>
-                                            :
-                                            null
-                                        }
-                                        <TrailerModal />
-                                        <Link to={`/shows/similar/${currentShow.id}`}> 
-                                            Similar Shows
-                                        </Link>
-                                    </div>
-                                </Grid.Row>
-                                <Grid.Row>
-                                    <ActorsList />
-                                </Grid.Row>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                    </div>
-                    </div>
+                        <div className='show-details-background-color'>
+                            <div className='show-details-container'>
+                                <Grid columns={2} width={16} className='show-overview-block'>
+                                    <Grid.Row className='show-title'>
+                                        <h2>{currentShow.name}</h2>
+                                    </Grid.Row>
+                                    <Grid.Row>
+                                        <Grid.Column width={6} >
+
+                                            <Image
+                                                src={imgSrc}
+                                                size='large'
+                                            />
+                                        </Grid.Column>
+                                        <Grid.Column width={10}>
+                                            <Grid.Row>
+                                                <h3>Overview</h3>
+                                                <div>{currentShow.overview}</div>
+
+                                                {/* {currentShow.next_episode_to_air && currentShow.last_episode_to_air ?
+                                                    <h4>
+                                                        Next episode: {
+                                                            currentShow.next_episode_to_air.air_date
+                                                        }</h4> :
+                                                    <h4>
+                                                        Last episode: {
+                                                            currentShow.last_episode_to_air.air_date
+                                                        }
+                                                    </h4>
+                                                } */}
+                                            </Grid.Row>
+                                            <Grid.Row>
+                                                <div>
+                                                    {localStorage.token ?
+                                                        <Fragment>
+                                                            <Progress
+                                                                label={`${episodes.length}/${currentShow.number_of_episodes ? currentShow.number_of_episodes : 0}`}
+                                                                color='green'
+                                                                value={episodes ? episodes.length : 0}
+                                                                total={currentShow.number_of_episodes}
+                                                            />
+                                                            <Button
+                                                                onClick={this.onWatchShowClick}
+                                                            >
+                                                                {this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
+                                                            </Button>
+                                                        </Fragment>
+                                                        :
+                                                        null
+                                                    }
+                                                    <TrailerModal />
+                                                    <Link to={`/shows/similar/${currentShow.id}`}>
+                                                        Similar Shows
+                                                    </Link>
+                                                </div>
+                                            </Grid.Row>
+                                            <Grid.Row>
+                                                <ActorsList />
+                                            </Grid.Row>
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                </Grid>
+                            </div>
+                        </div>
                     </div>
                     <div className='seasons-episodes-container'>
-                    <div className='seasons-buttons-container'>
-                        {this.seasonsForCurrentShow()}
+                        <div className='seasons-buttons-container'>
+                            {this.seasonsForCurrentShow()}
 
-                    </div>
-                    <EpisodesTable />
+                        </div>
+                        <EpisodesTable />
                     </div>
                 </div>
                 :
@@ -153,7 +162,8 @@ class ShowDetails extends PureComponent {
 const mapStateToProps = state => {
     return {
         currentShow: state.showDetails,
-        watchList: state.watchList
+        watchList: state.watchList,
+        episodes: state.episodes
     }
 }
 

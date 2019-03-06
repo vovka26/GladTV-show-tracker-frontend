@@ -124,7 +124,7 @@ const watchList = (state='', action) => {
     }
 }
 
-const episodes = (state=[], action) => {
+const episodes = (state='', action) => {
     switch(action.type){
         case FETCH_WATCHED_EPISODES: 
             return action.payload;
@@ -140,10 +140,10 @@ const episodes = (state=[], action) => {
         return [...copy];
 
         case USER_LOGOUT: 
-            return [];
+            return '';
         
         case RESET_SHOW_PAGE:
-            return [];
+            return '';
 
         default: 
             return state;
