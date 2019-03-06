@@ -4,7 +4,7 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif; */
   font-family: 'Lora', serif;
-  font-size: 1.1em;
+  font-size: 1.2em;
   line-height: 1.4em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -222,4 +222,9 @@ div.show-all-actors{
 
 .cast-container {
   height: 60%;
+}
+
+.genres-line {
+  text-align: center;
+  margin: 2%;
 }

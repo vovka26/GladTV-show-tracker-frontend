@@ -8,7 +8,7 @@ import * as actions from '../redux/actions'
 const Navbar = (props) => {
     const { location: { pathname }, userLogout, currentUser } = props
     return (
-        <Menu pointing secondary className='navbar'>
+        <Menu pointing secondary className='navbar' size='large'>
             {currentUser ? (
                 <Fragment>
                     <Menu.Item

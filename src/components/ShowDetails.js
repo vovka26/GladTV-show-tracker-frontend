@@ -125,7 +125,7 @@ class ShowDetails extends PureComponent {
                                                     {localStorage.token ?
                                                             <Button
                                                                 onClick={this.onWatchShowClick}
-                                                                content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
+                                                                content={this.isSubscribed() ? 'Unsubscribe' : 'Subscribe'}
                                                                 inverted color={this.isSubscribed() ? 'red' : 'green'}
                                                             />
                                                         :
@@ -137,7 +137,11 @@ class ShowDetails extends PureComponent {
                                                     <TrailerModal />
                                                 </div>
                                             </Grid.Row>
-                                           
+                                            <Grid.Row>
+                                                <div className='genres-line'>
+                                                    |{currentShow.genres.map(genre => currentShow.genres.length > 0 ? ` ${genre.name} |` : genre.name)}
+                                                </div>
+                                            </Grid.Row>
                                             <Grid.Row className='cast-container'> 
                                                 <ActorsList />
                                             </Grid.Row>

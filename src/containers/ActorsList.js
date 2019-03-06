@@ -37,12 +37,16 @@ class ActorsList extends PureComponent {
                     ))}
 
                 </div>
-                <div className='show-all-actors'>
+                {this.props.actorsList.length > 0 && this.props.actorsList.length > 5 ? 
+                <div className='show-all-actors'> 
                     <Button
                         content={this.state.showAll ? 'Show less' : 'Show all'}
                         onClick={this.handleMoreActors}
                     />
                 </div>
+                :
+                null
+                }
             </div>
         )
     }
