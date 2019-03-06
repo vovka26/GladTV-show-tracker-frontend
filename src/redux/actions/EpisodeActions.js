@@ -22,3 +22,7 @@ const gotEpisodesForSeason = (response, dispatch) => {
         })
     }
 } 
+
+// const gettingWatchedEpisodes = () => dispatch => {
+
+// }

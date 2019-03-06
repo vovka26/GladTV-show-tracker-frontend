@@ -67,7 +67,7 @@ class ShowDetails extends PureComponent {
         const { currentShow, episodes } = this.props
         const imgSrc = currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
         const backgroundImg = currentShow.backdrop_path ? `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}` : null
-
+        debugger
         return (
             currentShow ?
                 <div className='show-main-container'>

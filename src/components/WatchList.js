@@ -11,6 +11,11 @@ class WatchList extends Component {
             this.props.getWatchList()
         }
     }
+
+    // startedShows = () => {
+    //     return this.props.watchList
+    // }
+
     render() {
         const { watchList } = this.props
         return (

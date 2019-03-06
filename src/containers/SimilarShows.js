@@ -35,12 +35,6 @@ class SimilarShows extends PureComponent {
         return this.props.similarShows.total_pages
     }
 
-    changePage = (e) => {
-        
-        
-        this.getShows()
-    }
-
     fetchMoreData = () => {
         let id = this.showId()
         let page = this.pageNum() + 1
@@ -58,14 +52,12 @@ class SimilarShows extends PureComponent {
                     hasMore={true}
                     loader={'...'}
                 >
-                    <div>
                         {similarShows.map(show =>
                             <ShowCard
                                 show={show}
                                 key={uuidv5()}
                             />
                         )}
-                    </div>
                 </InfiniteScroll>
                 :
                 <LoadingImage />
