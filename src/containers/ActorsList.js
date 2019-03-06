@@ -16,31 +16,32 @@ class ActorsList extends PureComponent {
 
     filterActors = () => {
         const { actorsList } = this.props
-        if (this.state.showAll ) {
+        if (this.state.showAll) {
             return actorsList;
-        }else{
+        } else {
             return actorsList.slice(0, 5)
         }
     }
 
     render() {
-        
+
         return (
-            <div><h3 className='actors-list-header'>Top Paid Cast</h3>
-            <div className='ui grid centered actors-list'>
-                {this.filterActors().map(actor => (
-                    <ActorCard
-                        key={actor.id}
-                        actor={actor}
-                    />
-                ))}
-                
-            </div>
+            <div className='cast-container'>
+                <h3 className='actors-list-header'>Top Paid Cast</h3>
+                <div className='ui grid centered actors-list'>
+                    {this.filterActors().map(actor => (
+                        <ActorCard
+                            key={actor.id}
+                            actor={actor}
+                        />
+                    ))}
+
+                </div>
                 <div className='show-all-actors'>
-                <Button 
-                    content={this.state.showAll ? 'Show less' : 'Show all'}
-                    onClick={this.handleMoreActors}
-                />
+                    <Button
+                        content={this.state.showAll ? 'Show less' : 'Show all'}
+                        onClick={this.handleMoreActors}
+                    />
                 </div>
             </div>
         )

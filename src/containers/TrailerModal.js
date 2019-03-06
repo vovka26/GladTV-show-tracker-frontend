@@ -13,7 +13,7 @@ class TrailerModal extends PureComponent {
         return (
             video ?
                 <Modal
-                    trigger={<Button content='Trailer' />}
+                    trigger={<Button content='Trailer' icon='play circle' inverted color='blue'/>}
                     dimmer='blurring'
                     size='large'
                     basic

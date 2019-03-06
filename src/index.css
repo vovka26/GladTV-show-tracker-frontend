@@ -34,6 +34,19 @@ a.ui.card > img.card-image {
   /* min-height: 30%; */
 }
 
+.buttons-row button {
+  width: 25%;
+}
+
+div.similar-shows-button button.ui.basic.button {
+  background-color: white;
+}
+
+div.ui.green.progress.progress-bar .bar {
+  border-radius: 0;
+  height: 2.25em;
+}
+
 .searchbar {
   position: sticky;
   top: 0;
@@ -173,6 +186,11 @@ div.show-all-actors{
   background-color: #ffffff66;
 }
 
+.buttons-row {
+  margin: 3% 0;
+  text-align: center;
+}
+
 .show-all-actors button.ui.button:hover {
   background-color: white;
 }
@@ -200,4 +218,8 @@ div.show-all-actors{
 .main-page-header {
   text-align: center;
   margin: 1%;
+}
+
+.cast-container {
+  height: 60%;
 }

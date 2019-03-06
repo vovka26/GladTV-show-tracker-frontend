@@ -20,7 +20,6 @@ const ActorCard = (props) => {
         >
             <Image 
                 src={imgSrc} 
-                // size='tiny'
             />
             <Card.Header>{actor.name}</Card.Header>
         </Card>

@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { Image, Button, Grid, Progress } from 'semantic-ui-react';
@@ -41,7 +41,9 @@ class ShowDetails extends PureComponent {
     }
 
     isSubscribed = () => {
-        return this.props.watchList.find(show => show.api_id === this.props.currentShow.id) ? true : false
+        if (this.props.watchList) {
+            return this.props.watchList.find(show => show.api_id === this.props.currentShow.id) ? true : false
+        }
     }
 
     currentShowId = () => {
@@ -77,7 +79,7 @@ class ShowDetails extends PureComponent {
         const { currentShow, episodes } = this.props
 
         return (
-            currentShow ?
+            this.props.currentShow ?
                 <div className='show-main-container'>
                     <div className='show-details-background-picture'
                         style={{
@@ -96,7 +98,6 @@ class ShowDetails extends PureComponent {
                                     </Grid.Row>
                                     <Grid.Row>
                                         <Grid.Column width={6} >
-
                                             <Image
                                                 src={this.imgSrc()}
                                                 size='large'
@@ -120,31 +121,24 @@ class ShowDetails extends PureComponent {
                                                 } */}
                                             </Grid.Row>
                                             <Grid.Row>
-                                                <div>
+                                                <div className='buttons-row'>
                                                     {localStorage.token ?
-                                                        <Fragment>
-                                                            <Progress
-                                                                label={`${episodes.length}/${currentShow.number_of_episodes ? currentShow.number_of_episodes : 0}`}
-                                                                color='green'
-                                                                value={episodes ? episodes.length : 0}
-                                                                total={currentShow.number_of_episodes}
-                                                            />
                                                             <Button
                                                                 onClick={this.onWatchShowClick}
-                                                            >
-                                                                {this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
-                                                            </Button>
-                                                        </Fragment>
+                                                                content={this.isSubscribed() ? 'Unubscribe!' : 'Subscribe'}
+                                                                inverted color={this.isSubscribed() ? 'red' : 'green'}
+                                                            />
                                                         :
                                                         null
                                                     }
-                                                    <TrailerModal />
                                                     <Link to={`/shows/similar/${currentShow.id}`}>
-                                                        Similar Shows
+                                                        <Button inverted color='yellow'>Similar Shows</Button>
                                                     </Link>
+                                                    <TrailerModal />
                                                 </div>
                                             </Grid.Row>
-                                            <Grid.Row verticalAlign='bottom'>
+                                           
+                                            <Grid.Row className='cast-container'> 
                                                 <ActorsList />
                                             </Grid.Row>
                                         </Grid.Column>
@@ -153,10 +147,21 @@ class ShowDetails extends PureComponent {
                             </div>
                         </div>
                     </div>
+                    {localStorage.token ?
+                    <Progress
+                        className='progress-bar'
+                        label={`${episodes.length}/${currentShow.number_of_episodes ? currentShow.number_of_episodes : 0}`}
+                        // progress='ratio'
+                        color='green'
+                        value={episodes ? episodes.length : 0}
+                        total={currentShow.number_of_episodes}
+                    /> 
+                    : 
+                    null
+                    }
                     <div className='seasons-episodes-container'>
                         <div className='seasons-buttons-container'>
                             {this.seasonsForCurrentShow()}
-
                         </div>
                         <EpisodesTable />
                     </div>
