@@ -147,13 +147,21 @@ a.ui.card > .movie-card-header {
   margin-left: 1.3%;
 }
 
-.ui.grid.actors-list {
+div.ui.grid.actors-list {
   margin: auto;
+  display: inline-flex;
 }
 
 .ui.card.actor-card {
-  width: 14%;
+  width: 11%;
   margin: 1%;
+  background-color: #ffffff66;
+  color: black;
+  text-align: center;
+}
+
+.actor-card img {
+  margin: auto;
 }
 
 .main-carousel {

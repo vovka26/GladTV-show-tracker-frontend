@@ -63,16 +63,25 @@ class ShowDetails extends PureComponent {
         )))
     }
 
+    imgSrc = () => {
+        const { currentShow } = this.props
+        return currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
+    }
+
+    backgroundImg = () => {
+        const { currentShow } = this.props
+        return currentShow.backdrop_path ? `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}` : null
+    }
+
     render() {
         const { currentShow, episodes } = this.props
-        const imgSrc = currentShow.poster_path ? `https://image.tmdb.org/t/p/original/${currentShow.poster_path}` : noImage
-        const backgroundImg = currentShow.backdrop_path ? `https://image.tmdb.org/t/p/original/${currentShow.backdrop_path}` : null
+
         return (
             currentShow ?
                 <div className='show-main-container'>
                     <div className='show-details-background-picture'
                         style={{
-                            background: `url(${backgroundImg})`,
+                            background: `url(${this.backgroundImg()})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center center',
                             backgroundRepeat: 'no-repeat'
@@ -89,7 +98,7 @@ class ShowDetails extends PureComponent {
                                         <Grid.Column width={6} >
 
                                             <Image
-                                                src={imgSrc}
+                                                src={this.imgSrc()}
                                                 size='large'
                                             />
                                         </Grid.Column>
