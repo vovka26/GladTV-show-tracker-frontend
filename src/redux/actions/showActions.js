@@ -1,4 +1,4 @@
-import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST, RESET_SHOW_PAGE, FETCH_POPULAR_SHOWS, FETCH_SIMILAR_SHOWS, RESET_SHOWS } from './types'
+import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST, RESET_SHOW_PAGE, FETCH_POPULAR_SHOWS, FETCH_SIMILAR_SHOWS, FETCH_MORE_SIMILAR_SHOWS, RESET_SHOWS } from './types'
 
 import { BASE_URL } from './index'
 
@@ -47,6 +47,17 @@ export const getSimilarShows = (showId, pageNum=1) => dispatch => {
 				payload: shows
 			})
 		)
+}
+
+export const getMoreSimilarShows = (showId, pageNum=2) => dispatch => {
+	fetch(`${BASE_URL}/apishows/similar/${showId}?page=${pageNum}`)
+	.then(res => res.json())
+	.then(shows => 
+		dispatch({
+			type: FETCH_MORE_SIMILAR_SHOWS,
+			payload: shows
+		})
+	)
 }
 
 export const getWatchList = () => dispatch => {

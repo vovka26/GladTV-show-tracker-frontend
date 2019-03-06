@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import * as actions from '../redux/actions';
 import noImage from '../noImage.png'
 import ShowSubscribeButton from './ShowSubscribeButton';
+import LoadingImage from './LoadingImage';
 
 const ShowCard = (props) => {
     const { show, history } = props
@@ -37,6 +38,7 @@ const ShowCard = (props) => {
     const imageSrc = show.poster_path ? `https://image.tmdb.org/t/p/w200/${show.poster_path}` : noImage
 
     return (
+        props.watchList ? 
         <div className='movie-card'>
         <Card onClick={onCardClick}>
             {localStorage.token ? 
@@ -81,6 +83,8 @@ const ShowCard = (props) => {
             />
         </Card> 
         </div>
+        :
+        <LoadingImage />
     )
 }
 
