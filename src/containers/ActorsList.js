@@ -26,17 +26,22 @@ class ActorsList extends PureComponent {
     render() {
         
         return (
-            <div className='ui grid actors-list'>
+            <div><h3 className='actors-list-header'>Top Paid Cast</h3>
+            <div className='ui grid centered actors-list'>
                 {this.filterActors().map(actor => (
                     <ActorCard
                         key={actor.id}
                         actor={actor}
                     />
                 ))}
+                
+            </div>
+                <div className='show-all-actors'>
                 <Button 
                     content={this.state.showAll ? 'Show less' : 'Show all'}
                     onClick={this.handleMoreActors}
                 />
+                </div>
             </div>
         )
     }

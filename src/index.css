@@ -149,11 +149,10 @@ a.ui.card > .movie-card-header {
 
 div.ui.grid.actors-list {
   margin: auto;
-  display: inline-flex;
 }
 
 .ui.card.actor-card {
-  width: 11%;
+  width: 10%;
   margin: 1%;
   background-color: #ffffff66;
   color: black;
@@ -162,6 +161,25 @@ div.ui.grid.actors-list {
 
 .actor-card img {
   margin: auto;
+  width: 75%;
+}
+
+div.show-all-actors{
+  margin: auto;
+  text-align: center;
+}
+
+.show-all-actors button.ui.button {
+  background-color: #ffffff66;
+}
+
+.show-all-actors button.ui.button:hover {
+  background-color: white;
+}
+
+.actors-list-header {
+  text-align: center;
+  display: block
 }
 
 .main-carousel {

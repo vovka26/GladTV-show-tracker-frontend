@@ -144,7 +144,7 @@ class ShowDetails extends PureComponent {
                                                     </Link>
                                                 </div>
                                             </Grid.Row>
-                                            <Grid.Row>
+                                            <Grid.Row verticalAlign='bottom'>
                                                 <ActorsList />
                                             </Grid.Row>
                                         </Grid.Column>
