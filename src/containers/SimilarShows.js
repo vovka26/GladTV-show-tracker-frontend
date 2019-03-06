@@ -56,7 +56,7 @@ class SimilarShows extends PureComponent {
                     dataLength={similarShows.length}
                     next={this.fetchMoreData}
                     hasMore={true}
-                    loader={<h4>Loading...</h4>}
+                    loader={'...'}
                 >
                     <div>
                         {similarShows.map(show =>

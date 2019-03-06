@@ -1,4 +1,4 @@
-import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST, RESET_SHOW_PAGE, FETCH_POPULAR_SHOWS, FETCH_SIMILAR_SHOWS, FETCH_MORE_SIMILAR_SHOWS, RESET_SHOWS } from './types'
+import { FETCH_SHOWS, FETCH_SHOW_DETAILS, GET_WATCHLIST, RESET_SHOW_PAGE, FETCH_POPULAR_SHOWS, FETCH_SIMILAR_SHOWS, FETCH_MORE_SIMILAR_SHOWS, RESET_SHOWS, FETCH_MORE_SHOWS } from './types'
 
 import { BASE_URL } from './index'
 
@@ -10,6 +10,20 @@ export const getShows = (pageNum=null) => (dispatch, getState) => {
 			.then(shows =>
 				dispatch({
 					type: FETCH_SHOWS,
+					payload: shows
+				})
+			);
+	}
+}
+
+export const getMoreShows = (pageNum=2) => (dispatch, getState) => {
+	if (getState().searchTerm) {
+		const uriEncode = encodeURIComponent(getState().searchTerm)
+		fetch(`${BASE_URL}/apishows?query=${uriEncode}&page=${pageNum}`)
+			.then(res => res.json())
+			.then(shows =>
+				dispatch({
+					type: FETCH_MORE_SHOWS,
 					payload: shows
 				})
 			);

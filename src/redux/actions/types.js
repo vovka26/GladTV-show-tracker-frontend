@@ -1,5 +1,6 @@
 //show actions
 export const FETCH_SHOWS = 'FETCH_SHOWS';
+export const FETCH_MORE_SHOWS = 'FETCH_MORE_SHOWS';
 export const FETCH_SHOW_DETAILS = 'FETCH_SHOW_DETAILS';
 export const GET_WATCHLIST = 'GET_WATCHLIST';
 export const FETCH_POPULAR_SHOWS = 'FETCH_POPULAR_SHOWS';
