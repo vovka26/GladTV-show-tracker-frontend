@@ -16,15 +16,22 @@ code {
     monospace;
 }
 
+div.cards-container {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+}
+
 .movie-card {
   margin: 1.5%;
   text-align: center;
   display: inline-block;
   width: 22%;
+  /* min-height: 30%; */
 }
 
 a.ui.card > img.card-image {
-  min-height: 31em;
+  /* min-height: 30%; */
 }
 
 .searchbar {

@@ -20,7 +20,6 @@ const ShowCard = (props) => {
 
     const addShow = (e, props) => {
         e.stopPropagation()
-        debugger
         props.addShowToUserWatchlist(props.show)
     }
 
@@ -35,7 +34,7 @@ const ShowCard = (props) => {
         return watchList.find(showObj => showObj.api_id === show.id) ? true : false
     }
 
-    const imageSrc = show.poster_path ? `https://image.tmdb.org/t/p/w200/${show.poster_path}` : noImage
+    const imageSrc = show.poster_path ? `https://image.tmdb.org/t/p/original/${show.poster_path}` : noImage
 
     return (
 

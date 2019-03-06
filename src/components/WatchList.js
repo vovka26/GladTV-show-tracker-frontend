@@ -21,7 +21,7 @@ class WatchList extends Component {
         return (
             !localStorage.getItem('token') ? <Redirect to='/login' /> :
                 watchList ?
-                    <div className='ui grid centered'>
+                    <div className='cards-container'>
                         {watchList.map(show => (
                             <WatchListCard
                                 show={show}

@@ -48,7 +48,7 @@ class ShowList extends PureComponent {
                         content='Loading'
                     />}
                 >
-                    <div className='ui grid centered'>
+                    <div className='cards-container'>
                         {shows.map(show =>
                             <ShowCard
                                 key={uuidv5()}

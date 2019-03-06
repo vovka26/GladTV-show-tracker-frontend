@@ -51,13 +51,14 @@ class SimilarShows extends PureComponent {
                     next={this.fetchMoreData}
                     hasMore={true}
                     loader={'...'}
-                >
+                >       <div className='cards-container'>
                         {similarShows.map(show =>
                             <ShowCard
                                 show={show}
                                 key={uuidv5()}
                             />
                         )}
+                        </div>
                 </InfiniteScroll>
                 :
                 <LoadingImage />
