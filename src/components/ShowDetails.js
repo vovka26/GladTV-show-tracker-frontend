@@ -97,7 +97,7 @@ class ShowDetails extends PureComponent {
                                         <h2>{currentShow.name}</h2>
                                     </Grid.Row>
                                     <Grid.Row>
-                                        <Grid.Column width={6} >
+                                        <Grid.Column width={6} className='show-details-image'>
                                             <Image
                                                 src={this.imgSrc()}
                                                 size='large'
