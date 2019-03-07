@@ -56,12 +56,19 @@ const Navbar = (props) => {
                             name="Home"
                             active={pathname === '/'}
                         />
-                        <Menu.Item
+                         <Menu.Item
                             position='right'
                             as={NavLink}
                             to='/login'
                             name="Login"
                             active={pathname === '/login'}
+                        />
+                        <Menu.Item
+                            // position='right'
+                            as={NavLink}
+                            to='/signup'
+                            name="Signup"
+                            active={pathname === '/signup'}
                         />
                     </Fragment>
                 )
