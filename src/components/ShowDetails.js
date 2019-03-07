@@ -150,7 +150,6 @@ class ShowDetails extends PureComponent {
                         <Progress
                             className='progress-bar'
                             label={`${episodes.length}/${currentShow.number_of_episodes ? currentShow.number_of_episodes : 0}`}
-                            // progress='ratio'
                             color='green'
                             value={episodes ? episodes.length : 0}
                             total={currentShow.number_of_episodes}

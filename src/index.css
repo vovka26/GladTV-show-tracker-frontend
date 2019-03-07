@@ -30,10 +30,6 @@ div.cards-container {
   /* min-height: 30%; */
 }
 
-a.ui.card > img.card-image {
-  /* min-height: 30%; */
-}
-
 .buttons-row button {
   width: 25%;
 }
@@ -254,6 +250,10 @@ h3.actors-list-header {
   margin: 2%;
 }
 
+.actor-details-name-header {
+  margin-right: 13%
+}
+
 .biography-row-title h3 {
   margin-top: 5%;
   margin-bottom: 2%;
@@ -286,4 +286,10 @@ h3.actors-list-header {
 
 div.six.wide.column.show-details-image {
   margin-bottom: 2.5%;
+}
+
+.dob-dof {
+  text-align: center;
+  margin-top: 3.5%;
+  margin-bottom: 3.5%
 }

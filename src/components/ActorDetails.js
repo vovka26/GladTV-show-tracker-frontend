@@ -29,7 +29,6 @@ class ActorDetails extends PureComponent {
                 <div className='actor-details-container' >
                     <Grid columns={2} width={16} >
 
-                        <Grid.Row>
                             <Grid.Column width={10}>
                                 <div>
                                     <Grid.Row>
@@ -44,13 +43,17 @@ class ActorDetails extends PureComponent {
                                         <Grid.Column>
                                             
                                         </Grid.Column>
+
+                                        <Grid.Column>
+
+                                        </Grid.Column>
                                     </Grid.Row>
                                 </div>
                             </Grid.Column>
 
                             <Grid.Column width={6}>
                                 <Grid.Row  className='actor-details-name'>
-                                    <h2 >{actor.name}</h2>
+                                    <h2 className='actor-details-name-header'>{actor.name}</h2>
                                 </Grid.Row>
 
                                 <Grid.Row>
@@ -60,9 +63,16 @@ class ActorDetails extends PureComponent {
                                             size='large'
                                         />
                                     </div>
+                                    <div className='dob-dof'>
+                                        <div>
+                                            {actor.birthday ? `Birthday: ${actor.birthday}` : null}
+                                        </div>
+                                        <div>
+                                            {actor.deathday ? `Date of Death: ${actor.deathday}` : null}
+                                        </div>
+                                    </div>
                                 </Grid.Row>
                             </Grid.Column>
-                        </Grid.Row>
                     </Grid>
                     <Divider 
                         horizontal
@@ -92,12 +102,3 @@ const mapStateToProps = state => {
 }
 
 export default withRouter(connect(mapStateToProps, actions)(ActorDetails));
-
-// <div>
-//     
-//     <h5>{actor.birthday}</h5>
-//     
-//     
-// </div>
-//                 :
-// <LoadingImage />
