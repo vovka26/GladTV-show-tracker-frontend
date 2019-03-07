@@ -195,7 +195,8 @@ div.show-all-actors{
   background-color: white;
 }
 
-.actors-list-header {
+h3.actors-list-header {
+  margin-top: 3.5%; 
   text-align: center;
   display: block
 }
@@ -220,10 +221,6 @@ div.show-all-actors{
   margin: 1%;
 }
 
-.cast-container {
-  height: 60%;
-}
-
 .genres-line {
   text-align: center;
   margin: 2%;
@@ -244,4 +241,40 @@ div.show-all-actors{
 .next-episode {
   text-align: center;
   margin: 2%;
+}
+
+.actor-details-container {
+  max-width: 75%;
+  margin: auto;
+}
+
+.actor-details-name {
+  text-align: right;
+  margin: 2%;
+}
+
+.biography-row-title h3 {
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.biography-column {
+  text-align: justify;
+}
+
+.show-details-overview {
+  text-align: justify;
+}
+
+.not-found-page {
+  text-align: center;
+}
+
+.actor-details-divider {
+  margin: 3%;
+}
+
+.ui.secondary.pointing.menu .item.navbar-logo {
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
 }

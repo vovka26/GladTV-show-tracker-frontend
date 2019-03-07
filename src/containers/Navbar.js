@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
-import { Menu } from 'semantic-ui-react';
-import { withRouter, NavLink } from 'react-router-dom';
+import { Menu, Image } from 'semantic-ui-react';
+import { withRouter, NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions'
+import logo from '../logo.png'
 
 
 const Navbar = (props) => {
@@ -11,6 +12,13 @@ const Navbar = (props) => {
         <Menu pointing secondary className='navbar' size='large'>
             {currentUser ? (
                 <Fragment>
+                    <Menu.Item 
+                        as={Link}
+                        className='navbar-logo'
+                        to='/'
+                    >
+                        <Image src={logo} size='mini' />
+                    </Menu.Item>
                     <Menu.Item
                         as={NavLink}
                         to='/home'
@@ -42,6 +50,7 @@ const Navbar = (props) => {
                             active={pathname === '/'}
                         />
                         <Menu.Item
+                            position='right'
                             as={NavLink}
                             to='/login'
                             name="Login"

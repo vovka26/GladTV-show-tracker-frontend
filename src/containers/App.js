@@ -14,6 +14,7 @@ import Navbar from './Navbar';
 import ActorDetails from '../components/ActorDetails';
 import MainPage from './MainPage';
 import SimilarShows from './SimilarShows';
+import NotFoundPage from './NotFoundPage';
 
 class App extends PureComponent {
   componentDidMount() {
@@ -30,6 +31,8 @@ class App extends PureComponent {
           <Navbar />
           <SearchBar />
           <Switch>
+            <Route path='/' exact component={MainPage} />
+            <Route path='/home' exact component={MainPage} />
             <Route path='/login' component={Login} />
             <Route path='/signup' component={SignUp} />
             <Route path='/watchlist' component={WatchList} />
@@ -37,7 +40,7 @@ class App extends PureComponent {
             <Route path='/shows/similar/:id' component={SimilarShows} />
             <Route path='/shows/:id' component={ShowDetails} />
             <Route path='/actors/:id' component={ActorDetails} />
-            <Route path='/' component={MainPage} />
+            <Route component={NotFoundPage} />
           </Switch>
         </div>
     )

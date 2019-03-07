@@ -106,7 +106,7 @@ class ShowDetails extends PureComponent {
                                         <Grid.Column width={10}>
                                             <Grid.Row>
                                                 <h3>Overview</h3>
-                                                <div>{currentShow.overview}</div>
+                                                <div className='show-details-overview'>{currentShow.overview}</div>
                                             </Grid.Row>
                                             <Grid.Row>
                                                 <div className='buttons-row'>
