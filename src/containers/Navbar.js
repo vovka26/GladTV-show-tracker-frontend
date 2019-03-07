@@ -43,6 +43,13 @@ const Navbar = (props) => {
                 </Fragment>
             ) : (
                     <Fragment>
+                        <Menu.Item 
+                        as={Link}
+                        className='navbar-logo'
+                        to='/'
+                        >
+                            <Image src={logo} size='mini' />
+                        </Menu.Item>
                         <Menu.Item
                             as={NavLink}
                             to='/'
