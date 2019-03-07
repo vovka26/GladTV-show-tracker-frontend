@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
@@ -16,7 +16,7 @@ import MainPage from './MainPage';
 import SimilarShows from './SimilarShows';
 
 class App extends PureComponent {
-  componentDidMount(){
+  componentDidMount() {
     let token = localStorage.getItem('token')
     if (token) {
       this.props.checkToken(token)
@@ -26,27 +26,28 @@ class App extends PureComponent {
 
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <SearchBar /> 
-        <Switch>
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={SignUp} />
-          <Route path='/watchlist' component={WatchList} />
-          <Route path='/search' component={ShowList} />
-          <Route path='/shows/similar/:id' component={SimilarShows} />
-          <Route path='/shows/:id' component={ShowDetails} />
-          <Route path='/actors/:id' component={ActorDetails} />
-          <Route path='/' component={MainPage} />
-        </Switch>
-      </div>
-    );
+        <div className="App">
+          <Navbar />
+          <SearchBar />
+          <Switch>
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/watchlist' component={WatchList} />
+            <Route path='/search' component={ShowList} />
+            <Route path='/shows/similar/:id' component={SimilarShows} />
+            <Route path='/shows/:id' component={ShowDetails} />
+            <Route path='/actors/:id' component={ActorDetails} />
+            <Route path='/' component={MainPage} />
+          </Switch>
+        </div>
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser  }
+    currentUser: state.currentUser
+  }
 }
 
 export default withRouter(connect(mapStateToProps, actions)(App));

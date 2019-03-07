@@ -27,7 +27,7 @@ class ActorsList extends PureComponent {
 
         return (
             <div className='cast-container'>
-                <h3 className='actors-list-header'>Top Paid Cast</h3>
+                <h3 className='actors-list-header'>Main Actors</h3>
                 <div className='ui grid centered actors-list'>
                     {this.filterActors().map(actor => (
                         <ActorCard

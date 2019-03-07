@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { Form, Button, Segment, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
@@ -24,7 +24,11 @@ class Login extends PureComponent {
         const { username, password } = this.state
         return (
             this.props.currentUser ? <Redirect to='/watchlist' /> :
-                <Segment 
+                <Fragment>
+                    <video id="login-background" loop muted autoPlay playsInline poster={'https://static1.squarespace.com/static/58167399d2b857ceb9fd5059/t/5ae7f87b352f53431725b69f/1525151889635/433d83f7e481f35245f8c6bb7c7591d8.gif'}>
+                        <source src={'https://static1.squarespace.com/static/58167399d2b857ceb9fd5059/t/5ae7f87b352f53431725b69f/1525151889635/433d83f7e481f35245f8c6bb7c7591d8.gif'} type="video/mp4" />
+                    </video>
+                <Segment
                     placeholder
                     className='login-signup'
                 >
@@ -64,6 +68,7 @@ class Login extends PureComponent {
                         </Grid.Column>
                     </Grid>
                 </Segment>
+                </Fragment>
         )
     }
 }

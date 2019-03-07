@@ -228,3 +228,15 @@ div.show-all-actors{
   text-align: center;
   margin: 2%;
 }
+
+#login-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -10;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+}

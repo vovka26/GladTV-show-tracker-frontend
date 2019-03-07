@@ -22,6 +22,7 @@ class WatchList extends Component {
             !localStorage.getItem('token') ? <Redirect to='/login' /> :
                 watchList ?
                     <div className='cards-container'>
+                    <h2>My shows</h2>
                         {watchList.map(show => (
                             <WatchListCard
                                 show={show}
