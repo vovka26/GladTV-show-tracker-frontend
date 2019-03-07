@@ -240,3 +240,8 @@ div.show-all-actors{
   height: auto;
   transform: translate(-50%, -50%);
 }
+
+.next-episode {
+  text-align: center;
+  margin: 2%;
+}

@@ -107,27 +107,15 @@ class ShowDetails extends PureComponent {
                                             <Grid.Row>
                                                 <h3>Overview</h3>
                                                 <div>{currentShow.overview}</div>
-
-                                                {/* {currentShow.next_episode_to_air && currentShow.last_episode_to_air ?
-                                                    <h4>
-                                                        Next episode: {
-                                                            currentShow.next_episode_to_air.air_date
-                                                        }</h4> :
-                                                    <h4>
-                                                        Last episode: {
-                                                            currentShow.last_episode_to_air.air_date
-                                                        }
-                                                    </h4>
-                                                } */}
                                             </Grid.Row>
                                             <Grid.Row>
                                                 <div className='buttons-row'>
                                                     {localStorage.token ?
-                                                            <Button
-                                                                onClick={this.onWatchShowClick}
-                                                                content={this.isSubscribed() ? 'Unsubscribe' : 'Subscribe'}
-                                                                inverted color={this.isSubscribed() ? 'red' : 'green'}
-                                                            />
+                                                        <Button
+                                                            onClick={this.onWatchShowClick}
+                                                            content={this.isSubscribed() ? 'Unsubscribe' : 'Subscribe'}
+                                                            inverted color={this.isSubscribed() ? 'red' : 'green'}
+                                                        />
                                                         :
                                                         null
                                                     }
@@ -141,8 +129,15 @@ class ShowDetails extends PureComponent {
                                                 <div className='genres-line'>
                                                     |{currentShow.genres.map(genre => currentShow.genres.length > 0 ? ` ${genre.name} |` : genre.name)}
                                                 </div>
+                                                    {currentShow.next_episode_to_air ?
+                                                    <div className='next-episode'>
+                                                        Next episode: {
+                                                            currentShow.next_episode_to_air.air_date
+                                                        }
+                                                    </div> : null
+                                                }
                                             </Grid.Row>
-                                            <Grid.Row className='cast-container'> 
+                                            <Grid.Row className='cast-container'>
                                                 <ActorsList />
                                             </Grid.Row>
                                         </Grid.Column>
@@ -152,16 +147,16 @@ class ShowDetails extends PureComponent {
                         </div>
                     </div>
                     {localStorage.token ?
-                    <Progress
-                        className='progress-bar'
-                        label={`${episodes.length}/${currentShow.number_of_episodes ? currentShow.number_of_episodes : 0}`}
-                        // progress='ratio'
-                        color='green'
-                        value={episodes ? episodes.length : 0}
-                        total={currentShow.number_of_episodes}
-                    /> 
-                    : 
-                    null
+                        <Progress
+                            className='progress-bar'
+                            label={`${episodes.length}/${currentShow.number_of_episodes ? currentShow.number_of_episodes : 0}`}
+                            // progress='ratio'
+                            color='green'
+                            value={episodes ? episodes.length : 0}
+                            total={currentShow.number_of_episodes}
+                        />
+                        :
+                        null
                     }
                     <div className='seasons-episodes-container'>
                         <div className='seasons-buttons-container'>
