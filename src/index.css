@@ -62,9 +62,17 @@ div.ui.green.progress.progress-bar .bar {
 
 .ui.segment.login-signup {
   text-align: center;
-  margin: 18% auto;
+  margin: 14% auto;
   max-width: 30%;
   background-color: #77e8ff52;
+}
+
+.ui.segment.login-signup:hover {
+  background-color: #00b5ad;
+}
+
+.ui.segment.login-signup a {
+  color: #2500ff;
 }
 
 .show-details-container {
