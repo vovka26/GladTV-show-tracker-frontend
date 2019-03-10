@@ -114,7 +114,7 @@ const addingShowToWatchlist = (response, dispatch) => {
     }
 
 export const deleteShowFromWatchlist = (showId) => dispatch => {
-    fetch(`${BASE_URL}/api/v1/shows/${showId}`, {
+    fetch(`${BASE_URL}/shows/${showId}`, {
         method: 'DELETE',
         headers: {
             'Authentication': `Bearer ${localStorage.token}`
@@ -165,7 +165,7 @@ const addEpisodeToWatchlist = (response, dispatch) => {
 }
 
 export const deleteingEpisodeFromWatchList = episodeId => dispatch => {
-    fetch(`${BASE_URL}/api/v1/episodes/${episodeId}`, {
+    fetch(`${BASE_URL}/episodes/${episodeId}`, {
         method: 'DELETE',
         headers: {
             'Authentication': `Bearer ${localStorage.token}`
