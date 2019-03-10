@@ -82,7 +82,7 @@ export const createUser = formData => dispatch => {
 
 export const addShowToUserWatchlist = show => dispatch => {
     const { name, vote_average, genres='N/A', id, poster_path  } = show
-	fetch(`http://localhost:3000/api/v1/shows`, {
+	fetch(`${BASE_URL}/shows`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ const addingShowToWatchlist = (response, dispatch) => {
     }
 
 export const deleteShowFromWatchlist = (showId) => dispatch => {
-    fetch(`http://localhost:3000/api/v1/shows/${showId}`, {
+    fetch(`${BASE_URL}/api/v1/shows/${showId}`, {
         method: 'DELETE',
         headers: {
             'Authentication': `Bearer ${localStorage.token}`
@@ -136,7 +136,7 @@ const deletingShowFromWatchlist = (response, dispatch) => {
 }
 
 export const addingEpisodeToWatchlist = (episode, seasonId) => dispatch => {
-    fetch(`http://localhost:3000/api/v1/episodes`, {
+    fetch(`${BASE_URL}/episodes`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ const addEpisodeToWatchlist = (response, dispatch) => {
 }
 
 export const deleteingEpisodeFromWatchList = episodeId => dispatch => {
-    fetch(`http://localhost:3000/api/v1/episodes/${episodeId}`, {
+    fetch(`${BASE_URL}/api/v1/episodes/${episodeId}`, {
         method: 'DELETE',
         headers: {
             'Authentication': `Bearer ${localStorage.token}`
