@@ -1,3 +1,6 @@
+Link to backend - https://github.com/vovka26/GladTV-show-tracker-backend.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
