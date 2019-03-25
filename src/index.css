@@ -66,8 +66,10 @@ div.ui.green.progress.progress-bar .bar {
 
 .ui.menu.navbar {
   margin-bottom: 0%;
-  background-color: #3effea5e; 
+  background: linear-gradient(10deg, #00ff155e, #0f63ff5e); 
 }
+
+/* #3effea5e */
 
 .ui.segment.login-signup {
   text-align: center;
