@@ -27,8 +27,17 @@ div.cards-container {
   text-align: center;
   display: inline-block;
   width: 22%;
+  box-shadow: 0px 10px 25px rgba(0,0,0, 0.25);
   /* min-height: 30%; */
 }
+
+
+
+/* The box-shadow property takes values for offset-x (how far to push the shadow horizontally from the element), offset-y (how far to push the shadow vertically from the element), blur-radius, spread-radius and a color value, in that order. The blur-radius and spread-radius values are optional.
+
+Here's an example of the CSS to create multiple shadows with some blur, at mostly-transparent black colors:
+
+box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
 
 .buttons-row button {
   width: 25%;
@@ -73,6 +82,11 @@ div.ui.green.progress.progress-bar .bar {
 
 .ui.segment.login-signup a {
   color: #2500ff;
+}
+
+.ui.button.login-button {
+  min-width: 25%;
+  margin: 5%;
 }
 
 .show-details-container {
