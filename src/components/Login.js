@@ -70,7 +70,7 @@ class Login extends PureComponent {
                             </Form>
                             <Button 
                                 className='login-button'
-                                content='Guest'
+                                content='Login as Guest'
                                 onClick={this.guestClick}
                             />
                             <div>
