@@ -114,6 +114,7 @@ div.ui.green.progress.progress-bar .bar {
 }
 
 .seasons-episodes-container{
+  text-align: center;
   max-width: 75%;
   margin: 2% auto;
 }
