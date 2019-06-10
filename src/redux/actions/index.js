@@ -5,4 +5,4 @@ export * from './userActions'
 export * from './episodeActions'
 export * from './actorsActions'
 
-export const BASE_URL = 'http://localhost:3000/api/v1'
+export const BASE_URL = 'https://glad-tv.herokuapp.com/api/v1'

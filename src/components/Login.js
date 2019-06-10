@@ -20,6 +20,11 @@ class Login extends PureComponent {
         this.props.userLogin(this.state.username, this.state.password)
     }
 
+    guestClick = (e) => {
+        e.stopPropagation()
+        this.props.userLogin('guest', 'hey')
+    }
+
     render() {
         const { username, password } = this.state
         return (
@@ -58,10 +63,16 @@ class Login extends PureComponent {
                                     onChange={this.onChange}
                                 />
                                 <Button
+                                    className='login-button'
                                     type='submit'
                                     content='Login'
                                 />
                             </Form>
+                            <Button 
+                                className='login-button'
+                                content='Login as Guest'
+                                onClick={this.guestClick}
+                            />
                             <div>
                                 Not a user? {<Link to='/signup'>Sign Up</ Link>}
                             </div>
