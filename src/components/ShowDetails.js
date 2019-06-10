@@ -158,6 +158,7 @@ class ShowDetails extends PureComponent {
                         null
                     }
                     <div className='seasons-episodes-container'>
+                        <h3>Seasons: </h3>
                         <div className='seasons-buttons-container'>
                             {this.seasonsForCurrentShow()}
                         </div>
